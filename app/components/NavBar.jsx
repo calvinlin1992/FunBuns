@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Nav, NavItem, Navbar, NavbarHeader } from 'react-bootstrap'
 import { Link, Route } from 'react-router-dom'
 
 export default function NavBar() {
