@@ -17,6 +17,7 @@ import Jokes from './components/Jokes'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
+import NavBar from './components/NavBar'
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -25,6 +26,7 @@ const ExampleApp = connect(
     <div>
       <nav>
         {user ? <WhoAmI/> : <Login/>}
+        <NavBar />
       </nav>
       <main>
         <Switch>
