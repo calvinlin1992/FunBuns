@@ -15,8 +15,9 @@ const app = require('APP')
     , metaModels = {
       OAuth: require('./oauth'),
       User: require('./user'),
-      Thing: require('./thing'),
-      Favorite: require('./favorite'),
+      Order: require('./order'),
+      Product: require('./product'),
+      Review: require('./review')
       // ---------- Add new models here ----------
     }
     , {mapValues} = require('lodash')
@@ -51,8 +52,11 @@ module.exports = db => {
         //
         // Associate self with others.
         associations.call(metaModels[name], models[name], models)
+
       }
     })
 
   return models
 }
+
+
