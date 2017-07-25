@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
-import { Nav, NavItem } from 'react-bootstrap'
+import { Nav, NavItem, Navbar, NavbarHeader } from 'react-bootstrap'
+import { Link, Route } from 'react-router-dom'
 
 export default function NavBar() {
   return (
     <div>
-      <Nav bsStyle="pills" activeKey={1} onSelect={console.log('hi')}>
-        <NavItem eventKey={1} href="/">Home</NavItem>
-        <NavItem eventKey={2} href="/men">Mens</NavItem>
-        <NavItem eventKey={3} href="/women">Womens</NavItem>
-      </Nav>
+      <Link to="/home">Home</Link>
+      <Link to="/men">Mens</Link>
+      <Link to="/women">Womens</Link>
     </div>
   )
 }

@@ -14,6 +14,8 @@ import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom
 
 import store from './store'
 import Home from './components/Home'
+import Men from './components/Mens'
+import Women from './components/Womens'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
@@ -31,6 +33,8 @@ const ExampleApp = connect(
       <main>
         <Switch>
           <Route path="/home" component={Home} />
+          <Route path="/men" component={Men} />
+          <Route path="/women" component={Women} />
           <Redirect exact from="/" to="/home" />
           <Route component={NotFound} />
         </Switch>
