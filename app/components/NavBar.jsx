@@ -1,10 +1,17 @@
 import React, { Component } from 'react'
 import { Link, Route } from 'react-router-dom'
 import { Nav, NavItem, Navbar } from 'react-bootstrap'
+import { connect } from 'react-redux'
 
-export default function NavigationBar() {
-  return (
-    <Navbar collapseOnSelect>
+class NavigationBar extends Component {
+
+  constructor() {
+    super()
+  }
+
+  render() {
+    return(
+    <Navbar fluid inverse collapseOnSelect>
       <Navbar.Header>
         <Navbar.Brand><Link to="/home">FunBuns</Link></Navbar.Brand>
       </Navbar.Header>
@@ -17,5 +24,14 @@ export default function NavigationBar() {
         <NavItem eventKey={4}><Link to="/account">Account</Link></NavItem>
       </Nav>
     </Navbar>
-  )
+    )}
 }
+
+// const mapStateToProps = ({ auth }) => { user: auth }
+const mapStateToProps = (state) => {
+  return {
+    user: state.auth
+  }
+}
+
+export default connect(mapStateToProps)(NavigationBar)
