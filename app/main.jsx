@@ -14,25 +14,15 @@ import { BrowserRouter as Router } from 'react-router-dom'
 
 import store from './store'
 import NavigationBar from './components/NavBar'
+import Footer from './components/Footer'
 import Routes from './components/Routes'
-
-// const ExampleApp = connect(
-//   ({ auth }) => ({ user: auth })
-// )(
-//   ({ user, children }) =>
-//     <div>
-//        <nav>
-//         {user ? <WhoAmI /> : <Login />}
-//       </nav> 
-//       <main></main>
-//     </div>
-//   )
 
 const App = () => {
   return (
     <div>
       <nav><NavigationBar /></nav>
       <main><Routes /></main>
+      <footer><Footer /></footer>
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { React_Bootstrap_Carousel } from 'react-bootstrap-carousel'
-import '../node_modules/react-bootstrap-carousel/dist/react-bootstrap-carousel.css'
+//import '../node_modules/react-bootstrap-carousel/dist/react-bootstrap-carousel.css'
 
 // export default class Home extends Component {
 //   render() {
