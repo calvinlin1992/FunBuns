@@ -12,7 +12,7 @@ module.exports = db =>
       }
     },
     status: {
-      type: ENUM("cart", "open", "shipped", "delivered")
+      type: ENUM('cart', 'processed', 'shipped', 'delivered')
     },
     tracking_number: {
       type: STRING
@@ -21,5 +21,5 @@ module.exports = db =>
 
 module.exports.associations = (Order, { User, Product }) => {
   Order.belongsTo(User);
-  Order.belongsToMany(Product, { through: "OrderProduct" });
+  Order.belongsToMany(Product, { through: 'OrderProduct' });
 };
