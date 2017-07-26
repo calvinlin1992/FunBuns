@@ -1,13 +1,13 @@
 'use strict'
 
 const db = require('APP/db')
-    , {User, Thing, Favorite, Promise} = db
+    , {User, Product, Order, Review, Promise} = db
     , {mapValues} = require('lodash')
 
 function seedEverything() {
   const seeded = {
     users: users(),
-    things: things(),
+    products: products(),
   }
 
   seeded.favorites = favorites(seeded)
@@ -16,22 +16,84 @@ function seedEverything() {
 }
 
 const users = seed(User, {
-  god: {
-    email: 'god@example.com',
-    name: 'So many names',
+  sid: {
+    email: 'sid@funbuns.com',
+    first_name: 'Sid',
+    last_name: 'Reddy',
     password: '1234',
   },
-  barack: {
-    name: 'Barack Obama',
-    email: 'barack@example.gov',
-    password: '1234'
+  anthony: {
+    email: 'anthony@funbuns.com',
+    first_name: 'Anthony',
+    last_name: 'Watson',
+    password: '1234',
   },
+  calvin: {
+    email: 'calvin@funbuns.com',
+    first_name: 'Calvin',
+    last_name: 'Lin',
+    password: '1234',
+  },
+  shaun: {
+    email: 'shaun@funbuns.com',
+    first_name: 'Shaun',
+    last_name: 'Elabdouni',
+    password: '1234'}
 })
 
-const things = seed(Thing, {
-  surfing: {name: 'surfing'},
-  smiting: {name: 'smiting'},
-  puppies: {name: 'puppies'},
+// const things = seed(Thing, {
+//   surfing: {name: 'surfing'},
+//   smiting: {name: 'smiting'},
+//   puppies: {name: 'puppies'},
+// })
+
+
+const products = seed(Product, {
+
+  product1: {
+    name: 'samurai classic',
+    gender: 'M',
+    color: 'jet black',
+    style: 'samurai classic',
+    price: '9.99',
+    length: 'short'
+
+  },
+  product2: {
+    name: 'princess leia',
+    gender: 'M',
+    color: 'bear brown',
+    style: 'princess leia',
+    price: '9.99',
+    length: 'long'
+
+  },
+  product3: {
+    name: 'minimane',
+    gender: 'F',
+    color: 'dirty blonde',
+    style: 'minimane',
+    price: '9.99',
+    length: 'long'
+
+  },
+  product4: {
+    name: 'dread bun',
+    gender: 'M',
+    color: 'jet black',
+    style: 'dread bun',
+    price: '9.99',
+    length: 'short'
+
+  },
+  product5: {
+    name: 'samurai classic',
+    gender: 'F',
+    color: 'bare blonde',
+    style: 'samurai classic',
+    price: '9.99',
+    length: 'short'
+  }
 })
 
 const favorites = seed(Favorite,
