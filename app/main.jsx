@@ -19,7 +19,7 @@ import Women from './components/Womens'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
-import NavBar from './components/NavBar'
+import NavigationBar from './components/NavBar'
 import Routes from './components/Routes'
 
 const ExampleApp = connect(
@@ -29,9 +29,10 @@ const ExampleApp = connect(
     <div>
       <nav>
         {user ? <WhoAmI /> : <Login />}
-        <NavBar />
       </nav>
       <main>
+      <NavigationBar />
+
       </main>
     </div>
   )
