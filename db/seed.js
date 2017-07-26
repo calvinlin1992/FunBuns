@@ -96,6 +96,62 @@ const products = seed(Product, {
   }
 })
 
+
+
+const orders = seed(Order, {
+  order1: {
+    paid: true,
+    status: 'open',
+    tracking_number: '5043504385094385049843'
+  },
+  order2: {
+    paid: false,
+    status: 'open',
+    tracking_number: '09394058904385049340580'
+  },
+  order3: {
+    paid: false,
+    status: 'cart',
+    tracking_number: '98435908349866950984590'
+  },
+  order4: {
+    paid: true,
+    status: 'open',
+    tracking_number: '90485908349058340958093'
+  }
+  })
+
+
+const reviews = seed(Review, {
+
+  product1: {
+    rating: 5.0,
+    text: 'this shit is fly as fuck'
+
+  },
+    product2: {
+    rating: 4.8,
+    text: 'so cost effective and cool'
+
+  }
+  ,
+    product3: {
+    rating: 2.0,
+    text: 'people hate me when i wear this'
+
+  }
+   ,
+    product4: {
+    rating: 3.0,
+    text: 'thought i would look cooler'
+
+  },
+  product5: {
+    rating: 2.5,
+    text: 'a bird took a shit on my head'
+
+  }
+
 const favorites = seed(Favorite,
   // We're specifying a function here, rather than just a rows object.
   // Using a function lets us receive the previously-seeded rows (the seed
@@ -104,10 +160,10 @@ const favorites = seed(Favorite,
   // This lets us reference previously-created rows in order to create the join
   // rows. We can reference them by the names we used above (which is why we used
   // Objects above, rather than just arrays).
-  ({users, things}) => ({
+  ({users, orders, reviews, products}) => ({
     // The easiest way to seed associations seems to be to just create rows
     // in the join table.
-    'obama loves surfing': {
+    'dataset1: {
       user_id: users.barack.id,    // users.barack is an instance of the User model
                                    // that we created in the user seed above.
                                    // The seed function wires the promises so that it'll

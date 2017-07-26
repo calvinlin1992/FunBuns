@@ -4,6 +4,7 @@ import Carousel from './Carousel'
 import Men from './Mens'
 import Women from './Womens'
 import Cart from './Cart'
+
 import NotFound from './NotFound'
 
 export default function Routes() {
