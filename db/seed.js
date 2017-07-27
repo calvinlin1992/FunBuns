@@ -151,6 +151,7 @@ const reviews = seed(Review, {
     text: 'a bird took a shit on my head'
 
   }
+})
 
 const favorites = seed(Favorite,
   // We're specifying a function here, rather than just a rows object.
@@ -163,7 +164,7 @@ const favorites = seed(Favorite,
   ({users, orders, reviews, products}) => ({
     // The easiest way to seed associations seems to be to just create rows
     // in the join table.
-    'dataset1: {
+    'dataset1': {
       user_id: users.barack.id,    // users.barack is an instance of the User model
                                    // that we created in the user seed above.
                                    // The seed function wires the promises so that it'll
