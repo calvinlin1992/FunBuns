@@ -6,10 +6,8 @@ module.exports = db =>
   db.define("orders", {
     paid: {
       type: BOOLEAN,
-      validate: {
-        defaultValue: false,
-        allowNull: false
-      }
+      allowNull: false,
+      defaultValue: false
     },
     status: {
       type: ENUM('cart', 'processed', 'shipped', 'delivered')
@@ -21,5 +19,4 @@ module.exports = db =>
 
 module.exports.associations = (Order, { User, Product }) => {
   Order.belongsTo(User);
-  Order.belongsToMany(Product, { through: 'OrderProduct' });
 };

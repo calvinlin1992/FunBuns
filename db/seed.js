@@ -1,19 +1,22 @@
 'use strict'
 
 const db = require('APP/db')
-    , {User, Product, Order, Review, Promise} = db
+    , {User, Product, Order, OrderProduct, Review, Promise} = db
     , {mapValues} = require('lodash')
 
 function seedEverything() {
   const seeded = {
-    users: users(),
     products: products(),
+    users: users()
   }
 
-  seeded.favorites = favorites(seeded)
+  seeded.orders = orders(seeded)
+  seeded.orderProducts = orderProducts(seeded)
+  seeded.reviews = reviews(seeded)
 
   return Promise.props(seeded)
 }
+
 
 const users = seed(User, {
   sid: {
@@ -41,21 +44,15 @@ const users = seed(User, {
     password: '1234'}
 })
 
-// const things = seed(Thing, {
-//   surfing: {name: 'surfing'},
-//   smiting: {name: 'smiting'},
-//   puppies: {name: 'puppies'},
-// })
-
 
 const products = seed(Product, {
 
   product1: {
-    name: 'samurai classic',
+    name: 'classic',
     gender: 'M',
     color: 'jet black',
-    style: 'samurai classic',
-    price: '9.99',
+    style: 'classic',
+    price: '5.99',
     length: 'short'
 
   },
@@ -64,7 +61,7 @@ const products = seed(Product, {
     gender: 'M',
     color: 'bear brown',
     style: 'princess leia',
-    price: '9.99',
+    price: '12.50',
     length: 'long'
 
   },
@@ -73,7 +70,7 @@ const products = seed(Product, {
     gender: 'F',
     color: 'dirty blonde',
     style: 'minimane',
-    price: '9.99',
+    price: '8.45',
     length: 'long'
 
   },
@@ -82,78 +79,94 @@ const products = seed(Product, {
     gender: 'M',
     color: 'jet black',
     style: 'dread bun',
-    price: '9.99',
+    price: '15.30',
     length: 'short'
 
   },
   product5: {
     name: 'samurai classic',
     gender: 'F',
-    color: 'bare blonde',
+    color: 'dirty blonde',
     style: 'samurai classic',
-    price: '9.99',
+    price: '22.50',
     length: 'short'
   }
 })
 
 
-
-const orders = seed(Order, {
-  order1: {
-    paid: true,
-    status: 'open',
-    tracking_number: '5043504385094385049843'
-  },
-  order2: {
-    paid: false,
-    status: 'open',
-    tracking_number: '09394058904385049340580'
-  },
-  order3: {
-    paid: false,
-    status: 'cart',
-    tracking_number: '98435908349866950984590'
-  },
-  order4: {
-    paid: true,
-    status: 'open',
-    tracking_number: '90485908349058340958093'
-  }
+const orders = seed(Order,
+  
+  ({users}) => ({
+    order1: {
+      paid: true,
+      status: 'shipped',
+      tracking_number: '5043504385094385049843',
+      user_id: users.sid.id
+    },
+    order2: {
+      paid: false,
+      status: 'processed',
+      tracking_number: '09394058904385049340580',
+      user_id: users.anthony.id
+    },
+    order3: {
+      paid: false,
+      status: 'cart',
+      tracking_number: '98435908349866950984590',
+      user_id: users.calvin.id
+    },
+    order4: {
+      paid: true,
+      status: 'delivered',
+      tracking_number: '90485908349058340958093',
+      user_id: users.shaun.id
+    }
   })
+)
 
 
-const reviews = seed(Review, {
+const reviews = seed(Review,
 
-  product1: {
-    rating: 5.0,
-    text: 'this shit is fly as fuck'
+    ({users, products}) => ({
 
-  },
-    product2: {
-    rating: 4.8,
-    text: 'so cost effective and cool'
+      product1: {
+        rating: 5.0,
+        text: 'this shit is fly as fuck',
+        user_id: users.anthony.id,
+        product_id: products.product4.id
+      },
 
-  }
-  ,
-    product3: {
-    rating: 2.0,
-    text: 'people hate me when i wear this'
+      product2: {
+        rating: 4.8,
+        text: 'so cost effective and cool',
+        user_id: users.shaun.id,
+        product_id: products.product1.id
+      },
 
-  }
-   ,
-    product4: {
-    rating: 3.0,
-    text: 'thought i would look cooler'
+      product3: {
+        rating: 2.0,
+        text: 'people hate me when i wear this',
+        user_id: users.sid.id,
+        product_id: products.product2.id
+      },
+        
+      product4: {
+        rating: 3.0,
+        text: 'thought i would look cooler',
+        user_id: users.calvin.id,
+        product_id: products.product5.id
+      },
 
-  },
-  product5: {
-    rating: 2.5,
-    text: 'a bird took a shit on my head'
+      product5: {
+        rating: 2.5,
+        text: 'a bird took a shit on my head',
+        user_id: users.anthony.id,
+        product_id: products.product3.id
+      }
+  })
+)
 
-  }
-})
-
-const favorites = seed(Favorite,
+const orderProducts = seed(OrderProduct,
   // We're specifying a function here, rather than just a rows object.
   // Using a function lets us receive the previously-seeded rows (the seed
   // function does this wiring for us).
@@ -161,27 +174,61 @@ const favorites = seed(Favorite,
   // This lets us reference previously-created rows in order to create the join
   // rows. We can reference them by the names we used above (which is why we used
   // Objects above, rather than just arrays).
-  ({users, orders, reviews, products}) => ({
+  ({products, orders}) => ({
     // The easiest way to seed associations seems to be to just create rows
     // in the join table.
+    /*
     'dataset1': {
       user_id: users.barack.id,    // users.barack is an instance of the User model
                                    // that we created in the user seed above.
                                    // The seed function wires the promises so that it'll
                                    // have been created already.
       thing_id: things.surfing.id  // Same thing for things.
+    },*/
+
+    'dataset-1_1': {
+      order_id: orders.order1.id,
+      product_id: products.product1.id
     },
-    'god is into smiting': {
-      user_id: users.god.id,
-      thing_id: things.smiting.id
+    'dataset-1_4': {
+      order_id: orders.order1.id,
+      product_id: products.product4.id
     },
-    'obama loves puppies': {
-      user_id: users.barack.id,
-      thing_id: things.puppies.id
+    'dataset-1_5': {
+      order_id: orders.order1.id,
+      product_id: products.product5.id
     },
-    'god loves puppies': {
-      user_id: users.god.id,
-      thing_id: things.puppies.id
+    'dataset-2_4': {
+      order_id: orders.order2.id,
+      product_id: products.product4.id
+    },
+    'dataset-3_1': {
+      order_id: orders.order3.id,
+      product_id: products.product1.id
+    },
+    'dataset-3_2': {
+      order_id: orders.order3.id,
+      product_id: products.product2.id
+    },
+    'dataset-3_3': {
+      order_id: orders.order3.id,
+      product_id: products.product3.id
+    },
+    'dataset-3_4': {
+      order_id: orders.order3.id,
+      product_id: products.product4.id
+    },
+    'dataset-3_5': {
+      order_id: orders.order3.id,
+      product_id: products.product5.id
+    },
+    'dataset-4_2': {
+      order_id: orders.order4.id,
+      product_id: products.product2.id
+    },
+    'dataset-4_5': {
+      order_id: orders.order4.id,
+      product_id: products.product5.id
     },
   })
 )
@@ -254,4 +301,4 @@ function seed(Model, rows) {
   }
 }
 
-module.exports = Object.assign(seed, {users, things, favorites})
+module.exports = Object.assign(seed, {users, products, orders, reviews, orderProducts})
