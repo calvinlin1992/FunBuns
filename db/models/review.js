@@ -2,7 +2,7 @@
 
 const {DECIMAL, TEXT} = require('sequelize')
 
-module.exports = db => db.define('review', {
+module.exports = db => db.define('reviews', {
   rating: {type : DECIMAL,
  },
   text :{

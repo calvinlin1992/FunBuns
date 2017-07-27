@@ -5,9 +5,7 @@ const bcrypt = require("bcryptjs"),
   { STRING, VIRTUAL , TEXT, BOOLEAN} = require("sequelize");
 
 module.exports = db =>
-  db.define(
-    "users",
-    {
+  db.define("users", {
       first_name: STRING,
       last_name: STRING,
       email: {
@@ -60,7 +58,7 @@ module.exports = db =>
     }
   );
 
-module.exports.associations = (User, { OAuth, Order , Review}) => {
+module.exports.associations = (User, { OAuth, Order, Review}) => {
   User.hasOne(OAuth);
   User.hasMany(Order);
   User.hasMany(Review);
