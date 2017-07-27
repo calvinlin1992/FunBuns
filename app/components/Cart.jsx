@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 
-export default class Cart extends Component {
+export default class Cart extends Component { // make me dumb -- KHSB
 	render() {
 		return (
 			<div className="container">
@@ -53,3 +53,6 @@ export default class Cart extends Component {
 		)
 	}
 }
+
+
+// connected with auth, user and consider eagerly loading req.user (deserializeUser) with order. If not dispatch request for orders here unless not logged in and using session/browser storage then get it from there -- KHSB

@@ -5,7 +5,7 @@ import { React_Bootstrap_Carousel } from 'react-bootstrap-carousel'
 export default class Carousel extends Component {
 
   onSelect = (active, direction) => {
-    console.log(`active=${active} && direction=${direction}`)
+    console.log(`active=${active} && direction=${direction}`) // why is a log in master? -- KHSB
   }
   render() {
     return (
@@ -28,4 +28,6 @@ export default class Carousel extends Component {
       </div>
     )
   }
-};
+}; // no semicolons -- KHSB
+
+// connect this component and mapStateToProps to get products. use products to have pictures -- KHSB

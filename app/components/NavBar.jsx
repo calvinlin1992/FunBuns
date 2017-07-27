@@ -21,7 +21,7 @@ class NavigationBar extends Component {
         </Nav>
         <Nav pullRight>
           <NavItem eventKey={3}><Link to="/cart">Cart</Link></NavItem>
-          <NavItem eventKey={4}><Link to="/account">Account</Link></NavItem>
+          <NavItem eventKey={4}><Link to="/account">Account</Link></NavItem> {/*login OR account -- ternary -- KHSB*/}
         </Nav>
       </Navbar>
     )

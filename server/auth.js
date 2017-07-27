@@ -77,14 +77,14 @@ passport.serializeUser((user, done) => {
   done(null, user.id)
 })
 
-passport.deserializeUser(
-  (id, done) => {
+passport.deserializeUser( // invoked by passport.session -- KHSB
+  (id, done) => { // id comes from session -- KHSB
     debug('will deserialize user.id=%d', id)
     User.findById(id)
       .then(user => {
         if (!user) debug('deserialize retrieved null user for id=%d', id)
         else debug('deserialize did ok user.id=%d', id)
-        done(null, user)
+        done(null, user) // creates our req.user that we can use in all subsequent routes -- KHSB
       })
       .catch(err => {
         debug('deserialize did fail err=%s', err)
@@ -124,6 +124,10 @@ auth.get('/whoami', (req, res) => res.send(req.user))
 
 // POST requests for local login:
 auth.post('/login/local', passport.authenticate('local', {successRedirect: '/'}))
+auth.post('/signup/local', (req, res, next) => {
+  // create the user but jsut email and password
+  // once this is done look into req.login from passport -- KHSB
+})
 
 // GET requests for OAuth login:
 // Register this route as a callback URL with OAuth provider

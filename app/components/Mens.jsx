@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class Men extends Component {
+export default class Men extends Component { // make me dumb -- KHSB
   render() {
     return (
       <div>
@@ -9,3 +9,5 @@ export default class Men extends Component {
     )
   }
 }
+
+// connect. use products; probably just filter in render -- KHSB

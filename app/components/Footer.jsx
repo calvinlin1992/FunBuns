@@ -12,3 +12,5 @@ export default function Footer() {
     </Navbar>
   )
 }
+
+// look into whatever template you are using and footer specific styling -- KHSB

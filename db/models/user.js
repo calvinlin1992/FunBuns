@@ -28,7 +28,7 @@ module.exports = db =>
     phone_number: {
       type: STRING,
       validate: {
-        len: [1, 10]
+        len: [1, 10] // let's say 10 -- KHSB
       }
     },
     is_admin: {
