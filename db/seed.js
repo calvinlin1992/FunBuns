@@ -24,24 +24,38 @@ const users = seed(User, {
     first_name: 'Sid',
     last_name: 'Reddy',
     password: '1234',
+    is_admin: true
   },
   anthony: {
     email: 'anthony@funbuns.com',
     first_name: 'Anthony',
     last_name: 'Watson',
     password: '1234',
+    is_admin: true
   },
   calvin: {
     email: 'calvin@funbuns.com',
     first_name: 'Calvin',
     last_name: 'Lin',
     password: '1234',
+    is_admin: true
   },
   shaun: {
     email: 'shaun@funbuns.com',
     first_name: 'Shaun',
     last_name: 'Elabdouni',
-    password: '1234'}
+    password: '1234',
+    is_admin: true
+  },
+  Bob: {
+    email: 'bob@funbuns.com',
+    first_name: 'Bob',
+    last_name: 'Willow',
+    password: '1234',
+    address: '911 emergency station',
+    phone_number: '9119119111',
+    paypal_name: 'bob@paypal.com'
+  }
 })
 
 
@@ -95,7 +109,7 @@ const products = seed(Product, {
 
 
 const orders = seed(Order,
-  
+
   ({users}) => ({
     order1: {
       paid: true,
@@ -120,6 +134,12 @@ const orders = seed(Order,
       status: 'delivered',
       tracking_number: '90485908349058340958093',
       user_id: users.shaun.id
+    },
+    order5: {
+      paid: false,
+      status: 'cart',
+      tracking_number: '21343547546435244325',
+      user_id: users.Bob.id
     }
   })
 )
@@ -149,7 +169,7 @@ const reviews = seed(Review,
         user_id: users.sid.id,
         product_id: products.product2.id
       },
-        
+
       product4: {
         rating: 3.0,
         text: 'thought i would look cooler',
