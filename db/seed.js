@@ -1,13 +1,13 @@
 'use strict'
 
 const db = require('APP/db')
-    , {User, Product, Order, OrderProduct, Review, Promise} = db
-    , {mapValues} = require('lodash')
+  , { User, Product, Order, Review, OrderProduct, Promise } = db
+  , { mapValues } = require('lodash')
 
 function seedEverything() {
   const seeded = {
     products: products(),
-    users: users()
+    users: users(),
   }
 
   seeded.orders = orders(seeded)
@@ -17,35 +17,30 @@ function seedEverything() {
   return Promise.props(seeded)
 }
 
-
 const users = seed(User, {
   sid: {
     email: 'sid@funbuns.com',
     first_name: 'Sid',
     last_name: 'Reddy',
     password: '1234',
-    is_admin: true
   },
   anthony: {
     email: 'anthony@funbuns.com',
     first_name: 'Anthony',
     last_name: 'Watson',
     password: '1234',
-    is_admin: true
   },
   calvin: {
     email: 'calvin@funbuns.com',
     first_name: 'Calvin',
     last_name: 'Lin',
     password: '1234',
-    is_admin: true
   },
   shaun: {
     email: 'shaun@funbuns.com',
     first_name: 'Shaun',
     last_name: 'Elabdouni',
-    password: '1234',
-    is_admin: true
+    password: '1234'
   },
   Bob: {
     email: 'bob@funbuns.com',
@@ -58,16 +53,16 @@ const users = seed(User, {
   }
 })
 
-
 const products = seed(Product, {
 
   product1: {
-    name: 'classic',
+    name: 'samurai classic',
     gender: 'M',
     color: 'jet black',
-    style: 'classic',
-    price: '5.99',
-    length: 'short'
+    style: 'samurai classic',
+    price: '9.99',
+    length: 'short',
+    imageUrl: '../public/images/jetBlackShortM.jpg'
 
   },
   product2: {
@@ -75,17 +70,19 @@ const products = seed(Product, {
     gender: 'M',
     color: 'bear brown',
     style: 'princess leia',
-    price: '12.50',
-    length: 'long'
+    price: '9.99',
+    length: 'long',
+    imageUrl: '../public/images/leiaLongM.jpg'
 
   },
   product3: {
     name: 'minimane',
     gender: 'F',
-    color: 'dirty blonde',
+    color: 'straight blonde',
     style: 'minimane',
-    price: '8.45',
-    length: 'long'
+    price: '9.99',
+    length: 'long',
+    imageUrl: '../public/images/blondeBunminimaneF.jpg'
 
   },
   product4: {
@@ -93,8 +90,9 @@ const products = seed(Product, {
     gender: 'M',
     color: 'jet black',
     style: 'dread bun',
-    price: '15.30',
-    length: 'short'
+    price: '9.99',
+    length: 'short',
+    imageUrl: '../public/images/dreadShortM.jpg'
 
   },
   product5: {
@@ -102,15 +100,15 @@ const products = seed(Product, {
     gender: 'F',
     color: 'dirty blonde',
     style: 'samurai classic',
-    price: '22.50',
-    length: 'short'
+    price: '9.99',
+    length: 'short',
+    imageUrl: '../public/images/dirtyBlondeF.jpg'
   }
 })
 
-
 const orders = seed(Order,
 
-  ({users}) => ({
+  ({ users }) => ({
     order1: {
       paid: true,
       status: 'shipped',
@@ -147,42 +145,42 @@ const orders = seed(Order,
 
 const reviews = seed(Review,
 
-    ({users, products}) => ({
+  ({ users, products }) => ({
 
-      product1: {
-        rating: 5.0,
-        text: 'this shit is fly as fuck',
-        user_id: users.anthony.id,
-        product_id: products.product4.id
-      },
+    product1: {
+      rating: 5.0,
+      text: 'this shit is fly as fuck',
+      user_id: users.anthony.id,
+      product_id: products.product4.id
+    },
 
-      product2: {
-        rating: 4.8,
-        text: 'so cost effective and cool',
-        user_id: users.shaun.id,
-        product_id: products.product1.id
-      },
+    product2: {
+      rating: 4.8,
+      text: 'so cost effective and cool',
+      user_id: users.shaun.id,
+      product_id: products.product1.id
+    },
 
-      product3: {
-        rating: 2.0,
-        text: 'people hate me when i wear this',
-        user_id: users.sid.id,
-        product_id: products.product2.id
-      },
+    product3: {
+      rating: 2.0,
+      text: 'people hate me when i wear this',
+      user_id: users.sid.id,
+      product_id: products.product2.id
+    },
 
-      product4: {
-        rating: 3.0,
-        text: 'thought i would look cooler',
-        user_id: users.calvin.id,
-        product_id: products.product5.id
-      },
+    product4: {
+      rating: 3.0,
+      text: 'thought i would look cooler',
+      user_id: users.calvin.id,
+      product_id: products.product5.id
+    },
 
-      product5: {
-        rating: 2.5,
-        text: 'a bird took a shit on my head',
-        user_id: users.anthony.id,
-        product_id: products.product3.id
-      }
+    product5: {
+      rating: 2.5,
+      text: 'a bird took a shit on my head',
+      user_id: users.anthony.id,
+      product_id: products.product3.id
+    }
   })
 )
 
@@ -194,7 +192,7 @@ const orderProducts = seed(OrderProduct,
   // This lets us reference previously-created rows in order to create the join
   // rows. We can reference them by the names we used above (which is why we used
   // Objects above, rather than just arrays).
-  ({products, orders}) => ({
+  ({ products, orders }) => ({
     // The easiest way to seed associations seems to be to just create rows
     // in the join table.
     /*
@@ -255,7 +253,7 @@ const orderProducts = seed(OrderProduct,
 
 if (module === require.main) {
   db.didSync
-    .then(() => db.sync({force: true}))
+    .then(() => db.sync({ force: true }))
     .then(seedEverything)
     .finally(() => process.exit(0))
 }
@@ -284,7 +282,7 @@ class BadRow extends Error {
 // The function form can be used to initialize rows that reference
 // other models.
 function seed(Model, rows) {
-  return (others={}) => {
+  return (others = {}) => {
     if (typeof rows === 'function') {
       rows = Promise.props(
         mapValues(others,
@@ -307,10 +305,10 @@ function seed(Model, rows) {
                 )
             }
           }).reduce(
-            (all, one) => Object.assign({}, all, {[one.key]: one.value}),
-            {}
+          (all, one) => Object.assign({}, all, { [one.key]: one.value }),
+          {}
           )
-        )
+      )
       )
       .then(seeded => {
         console.log(`Seeded ${Object.keys(seeded).length} ${Model.name} OK`)
@@ -321,4 +319,4 @@ function seed(Model, rows) {
   }
 }
 
-module.exports = Object.assign(seed, {users, products, orders, reviews, orderProducts})
+module.exports = Object.assign(seed, { users, products, orders, reviews, orderProducts })

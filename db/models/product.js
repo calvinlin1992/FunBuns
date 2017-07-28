@@ -1,27 +1,27 @@
 'use strict'
 
-const {STRING, DECIMAL, ENUM} = require('sequelize')
+const { STRING, DECIMAL, ENUM } = require('sequelize')
 
 module.exports = db => db.define('products', {
   name: {
-    type : STRING,
+    type: STRING,
     allowNull: false
   },
-  gender :{
-    type : ENUM('M', 'F')
+  gender: {
+    type: ENUM('M', 'F')
   },
-  style : {
-    type : ENUM('classic', 'princess leia', 'samurai classic', 'minimane', 'dread bun')
+  style: {
+    type: ENUM('classic', 'princess leia', 'samurai classic', 'minimane', 'dread bun')
   },
-  price : {
-    type : DECIMAL,
+  price: {
+    type: DECIMAL,
     allowNull: false
   },
-  length : {
-    type : ENUM ('long','short'),
+  length: {
+    type: ENUM('long', 'short'),
   },
-  color : {
-    type : ENUM('jet black', 'bear brown', 'lighter brown', 'straight blonde', 'dirty blonde')
+  color: {
+    type: ENUM('jet black', 'bear brown', 'lighter brown', 'straight blonde', 'dirty blonde')
   },
   image: {
     type: STRING,
@@ -29,6 +29,6 @@ module.exports = db => db.define('products', {
   }
 })
 
-module.exports.associations = (Product, {Order, Review}) => {
+module.exports.associations = (Product, { Order, Review }) => {
   Product.hasMany(Review)
 }
