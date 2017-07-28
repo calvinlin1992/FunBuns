@@ -9,7 +9,7 @@ export default class CarouselHero extends Component {
   render() {
 
     return (
-      <Carousel fluid
+      <Carousel
         interval={2000}
         onSelect={this.onSelect}
       >
