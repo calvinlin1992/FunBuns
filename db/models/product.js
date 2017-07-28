@@ -23,9 +23,9 @@ module.exports = db => db.define('products', {
   color: {
     type: ENUM('jet black', 'bear brown', 'lighter brown', 'straight blonde', 'dirty blonde')
   },
-  image: {
+  image_url: {
     type: STRING,
-    defaultValue: ''
+    defaultValue: '/images/defaultImage.jpg'
   }
 })
 
