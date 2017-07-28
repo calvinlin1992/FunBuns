@@ -5,15 +5,15 @@ import { connect } from 'react-redux'
 
 class NavigationBar extends Component {
 
-  constructor() {
-    super()
-  }
-
   render() {
     return (
-      <Navbar fluid inverse collapseOnSelect>
+      <Navbar inverse collapseOnSelect>
         <Navbar.Header>
+<<<<<<< HEAD
           <Navbar.Brand><Link to="/">FunBuns</Link></Navbar.Brand>
+=======
+          <Navbar.Brand><Link to="/home">FunBuns</Link></Navbar.Brand>
+>>>>>>> master
         </Navbar.Header>
         <Nav>
           <NavItem eventKey={1}><Link to="/men">Mens</Link></NavItem>
