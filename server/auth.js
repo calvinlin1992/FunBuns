@@ -1,6 +1,8 @@
 const app = require('APP'), { env } = app
 const debug = require('debug')(`${app.name}:auth`)
 const passport = require('passport')
+const FacebookStrategy = require('passport-facebook').Strategy
+const GoogleStrategy = require('passport-google-oauth').OAuthStrategy
 
 const { User, OAuth } = require('APP/db')
 const auth = require('express').Router()
@@ -131,7 +133,8 @@ auth.post('/login/local', passport.authenticate('local', { successRedirect: '/' 
 
 // GET requests for OAuth login:
 // Register this route as a callback URL with OAuth provider
-auth.get('/login/:strategy', (req, res, next) =>
+auth.get('/login/:strategy', (req, res, next) => {
+  console.log(`we logged in with ${req.params.strategy}! yay`)
   passport.authenticate(req.params.strategy, {
     scope: 'email', // You may want to ask for additional OAuth scopes. These are
     // provider specific, and let you access additional data (like
@@ -139,6 +142,7 @@ auth.get('/login/:strategy', (req, res, next) =>
     successRedirect: '/',
     // Specify other config here
   })(req, res, next)
+}
 )
 
 auth.post('/logout', (req, res) => {
