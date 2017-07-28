@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Grid, Row, Col } from 'react-bootstrap'
 import { React_Bootstrap_Carousel } from 'react-bootstrap-carousel'
 
 export default class Carousel extends Component {
@@ -25,6 +26,7 @@ export default class Carousel extends Component {
             </div>
         </React_Bootstrap_Carousel>
       </div>
+      
     )
   }
 };

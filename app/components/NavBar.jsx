@@ -9,7 +9,11 @@ class NavigationBar extends Component {
     return (
       <Navbar inverse collapseOnSelect>
         <Navbar.Header>
+<<<<<<< HEAD
+          <Navbar.Brand><Link to="/">FunBuns</Link></Navbar.Brand>
+=======
           <Navbar.Brand><Link to="/home">FunBuns</Link></Navbar.Brand>
+>>>>>>> master
         </Navbar.Header>
         <Nav>
           <NavItem eventKey={1}><Link to="/men">Mens</Link></NavItem>

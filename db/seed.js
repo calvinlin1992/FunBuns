@@ -1,22 +1,19 @@
 'use strict'
 
 const db = require('APP/db')
-    , {User, Product, Order, OrderProduct, Review, Promise} = db
+    , {User, Product, Order, Review, Promise} = db
     , {mapValues} = require('lodash')
 
 function seedEverything() {
   const seeded = {
+    users: users(),
     products: products(),
-    users: users()
   }
 
-  seeded.orders = orders(seeded)
-  seeded.orderProducts = orderProducts(seeded)
-  seeded.reviews = reviews(seeded)
+  seeded.favorites = favorites(seeded)
 
   return Promise.props(seeded)
 }
-
 
 const users = seed(User, {
   sid: {
@@ -24,50 +21,43 @@ const users = seed(User, {
     first_name: 'Sid',
     last_name: 'Reddy',
     password: '1234',
-    is_admin: true
   },
   anthony: {
     email: 'anthony@funbuns.com',
     first_name: 'Anthony',
     last_name: 'Watson',
     password: '1234',
-    is_admin: true
   },
   calvin: {
     email: 'calvin@funbuns.com',
     first_name: 'Calvin',
     last_name: 'Lin',
     password: '1234',
-    is_admin: true
   },
   shaun: {
     email: 'shaun@funbuns.com',
     first_name: 'Shaun',
     last_name: 'Elabdouni',
-    password: '1234',
-    is_admin: true
-  },
-  Bob: {
-    email: 'bob@funbuns.com',
-    first_name: 'Bob',
-    last_name: 'Willow',
-    password: '1234',
-    address: '911 emergency station',
-    phone_number: '9119119111',
-    paypal_name: 'bob@paypal.com'
-  }
+    password: '1234'}
 })
+
+// const things = seed(Thing, {
+//   surfing: {name: 'surfing'},
+//   smiting: {name: 'smiting'},
+//   puppies: {name: 'puppies'},
+// })
 
 
 const products = seed(Product, {
 
   product1: {
-    name: 'classic',
+    name: 'samurai classic',
     gender: 'M',
     color: 'jet black',
-    style: 'classic',
-    price: '5.99',
-    length: 'short'
+    style: 'samurai classic',
+    price: '9.99',
+    length: 'short',
+    imageUrl: '../public/images/jetBlackShortM.jpg'
 
   },
   product2: {
@@ -75,17 +65,19 @@ const products = seed(Product, {
     gender: 'M',
     color: 'bear brown',
     style: 'princess leia',
-    price: '12.50',
-    length: 'long'
+    price: '9.99',
+    length: 'long',
+    imageUrl: '../public/images/leiaLongM.jpg'
 
   },
   product3: {
     name: 'minimane',
     gender: 'F',
-    color: 'dirty blonde',
+    color: 'straight blonde',
     style: 'minimane',
-    price: '8.45',
-    length: 'long'
+    price: '9.99',
+    length: 'long',
+    imageUrl: '../public/images/blondeBunminimaneF.jpg'
 
   },
   product4: {
@@ -93,8 +85,9 @@ const products = seed(Product, {
     gender: 'M',
     color: 'jet black',
     style: 'dread bun',
-    price: '15.30',
-    length: 'short'
+    price: '9.99',
+    length: 'short',
+    imageUrl: '../public/images/dreadShortM.jpg'
 
   },
   product5: {
@@ -102,11 +95,11 @@ const products = seed(Product, {
     gender: 'F',
     color: 'dirty blonde',
     style: 'samurai classic',
-    price: '22.50',
-    length: 'short'
+    price: '9.99',
+    length: 'short',
+    imageUrl: '../public/images/dirtyBlondeF.jpg'
   }
 })
-
 
 const orders = seed(Order,
 

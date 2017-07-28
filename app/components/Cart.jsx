@@ -43,7 +43,7 @@ export default class Cart extends Component {
 						</tr>
 						<tr>
 							<td><a href="#" className="btn btn-warning"><i className="fa fa-angle-left"></i> Continue Shopping</a></td>
-							<td colspan="2" className="hidden-xs"></td>
+							<td colSpan="2" className="hidden-xs"></td>
 							<td className="hidden-xs text-center"><strong>Total $1.99</strong></td>
 							<td><a href="#" className="btn btn-success btn-block">Checkout <i className="fa fa-angle-right"></i></a></td>
 						</tr>
