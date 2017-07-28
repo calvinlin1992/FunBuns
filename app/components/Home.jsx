@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
+import { Grid, Row, Col } from 'react-bootstrap'
 import Carousel from './Carousel'
 import ProductsContainer from './ProductsContainer'
 
-import {Grid, Row, Col} from 'react-bootstrap'
 
 class Home extends Component {
   constructor() {
@@ -11,18 +11,22 @@ class Home extends Component {
 
   render() {
     return (
-      <Grid>
-        <Row>
-          <Col md={12}>
-            <div>Above Carousel</div>
-            <Carousel />
-            <div>Below Carousel</div>
-          </Col>
+      <div>
+        <Grid>
           <Row>
-            <ProductsContainer displayType={'all'} />
+            <Col>
+              <Carousel />
+            </Col>
           </Row>
-        </Row>
-      </Grid>
+          <Row>
+            <Col>
+              {/* spacer div */}
+               <div style={{margin: "50px"}}></div> 
+            </Col>
+          </Row>
+        </Grid>
+        <ProductsContainer displayType={'all'} />
+      </div>
     )
   }
 }
