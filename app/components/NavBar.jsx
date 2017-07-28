@@ -13,7 +13,7 @@ class NavigationBar extends Component {
     return (
       <Navbar inverse collapseOnSelect>
         <Navbar.Header>
-          <Navbar.Brand><Link to="/home">FunBuns</Link></Navbar.Brand>
+          <Navbar.Brand><Link to="/">FunBuns</Link></Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
