@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
 import { Grid, Row, Col } from 'react-bootstrap'
 import { React_Bootstrap_Carousel } from 'react-bootstrap-carousel'
-<<<<<<< HEAD
-// import '../../node_modules/react-bootstrap-carousel/dist/react-bootstrap-carousel.css'
-=======
->>>>>>> master
 
 export default class Carousel extends Component {
 
