@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
-import Carousel from './Carousel'
+import Home from './Home'
 
 export default class Women extends Component {
   render() {
     return (
-      <div>
-      <Carousel />
-        This is the Womens page.
-      </div>
+      <Home productsFilter="F" />
     )
   }
 }

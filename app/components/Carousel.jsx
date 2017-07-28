@@ -1,32 +1,40 @@
 import React, { Component } from 'react'
-import { Grid, Row, Col } from 'react-bootstrap'
-import { React_Bootstrap_Carousel } from 'react-bootstrap-carousel'
+import { Carousel } from 'react-bootstrap'
 
-export default class Carousel extends Component {
+export default class CarouselHero extends Component {
 
   onSelect = (active, direction) => {
     //console.log(`active=${active} && direction=${direction}`)
   }
   render() {
+
     return (
-      <div style={{ height: 300 }}>
-        <React_Bootstrap_Carousel
-          animation={true}
-          onSelect={this.onSelect}
-          className="carousel-fade"
-        >
-          <div style={{ height: 300, width: '100%', backgroundColor: 'skyblue' }}>
-            123
-            </div>
-          <div style={{ height: 300, width: '100%', backgroundColor: 'aqua' }}>
-            456
-            </div>
-          <div style={{ height: 300, width: '100%', backgroundColor: 'lightpink' }}>
-            789
-            </div>
-        </React_Bootstrap_Carousel>
-      </div>
-      
+      <Carousel
+        interval={2000}
+        onSelect={this.onSelect}
+      >
+        <Carousel.Item>
+          <div className="bg_color_skyblue carousel_container"></div>
+          <Carousel.Caption>
+            <h3>First slide label</h3>
+            <p>Special Buns</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <div className="carousel_container bg_color_aqua"></div>
+          <Carousel.Caption>
+            <h3>Second slide label</h3>
+            <p>Hot Buns</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <div className="carousel_container bg_color_lightpink"></div>
+          <Carousel.Caption>
+            <h3>Third slide label</h3>
+            <p>Super Buns</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+      </Carousel>
     )
   }
 };

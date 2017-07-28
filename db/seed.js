@@ -1,16 +1,18 @@
 'use strict'
 
 const db = require('APP/db')
-    , {User, Product, Order, Review, Promise} = db
-    , {mapValues} = require('lodash')
+  , { User, Product, Order, Review, OrderProduct, Promise } = db
+  , { mapValues } = require('lodash')
 
 function seedEverything() {
   const seeded = {
-    users: users(),
     products: products(),
+    users: users(),
   }
 
-  seeded.favorites = favorites(seeded)
+  seeded.orders = orders(seeded)
+  seeded.orderProducts = orderProducts(seeded)
+  seeded.reviews = reviews(seeded)
 
   return Promise.props(seeded)
 }
@@ -38,15 +40,18 @@ const users = seed(User, {
     email: 'shaun@funbuns.com',
     first_name: 'Shaun',
     last_name: 'Elabdouni',
-    password: '1234'}
+    password: '1234'
+  },
+  Bob: {
+    email: 'bob@funbuns.com',
+    first_name: 'Bob',
+    last_name: 'Willow',
+    password: '1234',
+    address: '911 emergency station',
+    phone_number: '9119119111',
+    paypal_name: 'bob@paypal.com'
+  }
 })
-
-// const things = seed(Thing, {
-//   surfing: {name: 'surfing'},
-//   smiting: {name: 'smiting'},
-//   puppies: {name: 'puppies'},
-// })
-
 
 const products = seed(Product, {
 
@@ -103,7 +108,7 @@ const products = seed(Product, {
 
 const orders = seed(Order,
 
-  ({users}) => ({
+  ({ users }) => ({
     order1: {
       paid: true,
       status: 'shipped',
@@ -140,42 +145,42 @@ const orders = seed(Order,
 
 const reviews = seed(Review,
 
-    ({users, products}) => ({
+  ({ users, products }) => ({
 
-      product1: {
-        rating: 5.0,
-        text: 'this shit is fly as fuck',
-        user_id: users.anthony.id,
-        product_id: products.product4.id
-      },
+    product1: {
+      rating: 5.0,
+      text: 'this shit is fly as fuck',
+      user_id: users.anthony.id,
+      product_id: products.product4.id
+    },
 
-      product2: {
-        rating: 4.8,
-        text: 'so cost effective and cool',
-        user_id: users.shaun.id,
-        product_id: products.product1.id
-      },
+    product2: {
+      rating: 4.8,
+      text: 'so cost effective and cool',
+      user_id: users.shaun.id,
+      product_id: products.product1.id
+    },
 
-      product3: {
-        rating: 2.0,
-        text: 'people hate me when i wear this',
-        user_id: users.sid.id,
-        product_id: products.product2.id
-      },
+    product3: {
+      rating: 2.0,
+      text: 'people hate me when i wear this',
+      user_id: users.sid.id,
+      product_id: products.product2.id
+    },
 
-      product4: {
-        rating: 3.0,
-        text: 'thought i would look cooler',
-        user_id: users.calvin.id,
-        product_id: products.product5.id
-      },
+    product4: {
+      rating: 3.0,
+      text: 'thought i would look cooler',
+      user_id: users.calvin.id,
+      product_id: products.product5.id
+    },
 
-      product5: {
-        rating: 2.5,
-        text: 'a bird took a shit on my head',
-        user_id: users.anthony.id,
-        product_id: products.product3.id
-      }
+    product5: {
+      rating: 2.5,
+      text: 'a bird took a shit on my head',
+      user_id: users.anthony.id,
+      product_id: products.product3.id
+    }
   })
 )
 
@@ -187,7 +192,7 @@ const orderProducts = seed(OrderProduct,
   // This lets us reference previously-created rows in order to create the join
   // rows. We can reference them by the names we used above (which is why we used
   // Objects above, rather than just arrays).
-  ({products, orders}) => ({
+  ({ products, orders }) => ({
     // The easiest way to seed associations seems to be to just create rows
     // in the join table.
     /*
@@ -248,7 +253,7 @@ const orderProducts = seed(OrderProduct,
 
 if (module === require.main) {
   db.didSync
-    .then(() => db.sync({force: true}))
+    .then(() => db.sync({ force: true }))
     .then(seedEverything)
     .finally(() => process.exit(0))
 }
@@ -277,7 +282,7 @@ class BadRow extends Error {
 // The function form can be used to initialize rows that reference
 // other models.
 function seed(Model, rows) {
-  return (others={}) => {
+  return (others = {}) => {
     if (typeof rows === 'function') {
       rows = Promise.props(
         mapValues(others,
@@ -300,10 +305,10 @@ function seed(Model, rows) {
                 )
             }
           }).reduce(
-            (all, one) => Object.assign({}, all, {[one.key]: one.value}),
-            {}
+          (all, one) => Object.assign({}, all, { [one.key]: one.value }),
+          {}
           )
-        )
+      )
       )
       .then(seeded => {
         console.log(`Seeded ${Object.keys(seeded).length} ${Model.name} OK`)
@@ -314,4 +319,4 @@ function seed(Model, rows) {
   }
 }
 
-module.exports = Object.assign(seed, {users, products, orders, reviews, orderProducts})
+module.exports = Object.assign(seed, { users, products, orders, reviews, orderProducts })

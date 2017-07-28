@@ -1,0 +1,27 @@
+.spacer {
+  margin: 50px;
+}
+.gi-1_5x{
+  font-size: 1.5em;
+}
+.thumbnail>img {
+  margin-left: 0;
+  padding-left: 15px;
+}
+.product_card_content {
+  border-top: 2px solid gray;
+  padding-left: 15px;
+}
+.carousel_container {
+  height: 500px;
+  width: 100%;
+}
+.bg_color_skyblue {
+  background-color: #3633FF; /*'skyblue';*/
+}
+.bg_color_aqua {
+  background-color: #33FFE0; /*'aqua';*/
+}
+.bg_color_lightpink {
+  background-color: #D733FF /*'lightpink';*/
+}
