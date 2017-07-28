@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { Grid, Row, Col } from 'react-bootstrap'
-import Carousel from './Carousel'
+import CarouselHero from './Carousel'
 import ProductsContainer from './ProductsContainer'
 
 
 class Home extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
   }
 
   render() {
@@ -15,17 +15,17 @@ class Home extends Component {
         <Grid>
           <Row>
             <Col>
-              <Carousel />
+              <CarouselHero />
             </Col>
           </Row>
           <Row>
             <Col>
               {/* spacer div */}
-               <div style={{margin: "50px"}}></div> 
+               <div className="spacer"></div> 
             </Col>
           </Row>
         </Grid>
-        <ProductsContainer displayType={'all'} />
+        <ProductsContainer productType={this.props.productsFilter} />
       </div>
     )
   }
