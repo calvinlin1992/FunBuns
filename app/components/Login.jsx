@@ -14,7 +14,8 @@ export const Login = ({ login }) => (
 import {login} from 'APP/app/reducers/auth'
 import {connect} from 'react-redux'
 
+// props, sends login as a prop
 export default connect(
-  state => ({}),
-  {login},
+  state => ({}),  // mapStateToProps
+  {login},        // mapDispatchToProps
 )(Login)

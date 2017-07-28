@@ -1,8 +1,8 @@
-const app = require('APP'), {env} = app
+const app = require('APP'), { env } = app
 const debug = require('debug')(`${app.name}:auth`)
 const passport = require('passport')
 
-const {User, OAuth} = require('APP/db')
+const { User, OAuth } = require('APP/db')
 const auth = require('express').Router()
 
 /*************************
@@ -74,17 +74,18 @@ OAuth.setupStrategy({
 // Passport review in the Week 6 Concept Review:
 // https://docs.google.com/document/d/1MHS7DzzXKZvR6MkL8VWdCxohFJHGgdms71XNLIET52Q/edit?usp=sharing
 passport.serializeUser((user, done) => {
-  done(null, user.id)
+  done(null, user.id) // session will now have user.id on it
 })
 
-passport.deserializeUser(
-  (id, done) => {
+passport.deserializeUser( // called from passport.session
+  (id, done) => { // null if user isn't logged in
     debug('will deserialize user.id=%d', id)
     User.findById(id)
       .then(user => {
         if (!user) debug('deserialize retrieved null user for id=%d', id)
         else debug('deserialize did ok user.id=%d', id)
-        done(null, user)
+        // done function sets req.user = user
+        done(null, user)  // user === undefined
       })
       .catch(err => {
         debug('deserialize did fail err=%s', err)
@@ -95,11 +96,14 @@ passport.deserializeUser(
 
 // require.('passport-local').Strategy => a function we can use as a constructor, that takes in a callback
 passport.use(new (require('passport-local').Strategy)(
+  // body coming in must have email and password
   (email, password, done) => {
     debug('will authenticate user(email: "%s")', email)
     User.findOne({
-      where: {email},
-      attributes: {include: ['password_digest']}
+      where: { email },
+      // include: [password_digest] comes from DB, we need to eager load this b/c the front end doesn't need hashed passwords
+      // Also, we refer to password_digest in the instance method authenticate in user models
+      attributes: { include: ['password_digest'] }
     })
       .then(user => {
         if (!user) {
@@ -113,7 +117,7 @@ passport.use(new (require('passport-local').Strategy)(
               return done(null, false, { message: 'Login incorrect' })
             }
             debug('authenticate user(email: "%s") did ok: user.id=%d', email, user.id)
-            done(null, user)
+            done(null, user)  // serialize the user using the done function (going from json object to string)
           })
       })
       .catch(done)
@@ -122,16 +126,16 @@ passport.use(new (require('passport-local').Strategy)(
 
 auth.get('/whoami', (req, res) => res.send(req.user))
 
-// POST requests for local login:
-auth.post('/login/local', passport.authenticate('local', {successRedirect: '/'}))
+// POST requests for local login - basically for after logging in
+auth.post('/login/local', passport.authenticate('local', { successRedirect: '/' }))
 
 // GET requests for OAuth login:
 // Register this route as a callback URL with OAuth provider
 auth.get('/login/:strategy', (req, res, next) =>
   passport.authenticate(req.params.strategy, {
     scope: 'email', // You may want to ask for additional OAuth scopes. These are
-                    // provider specific, and let you access additional data (like
-                    // their friends or email), or perform actions on their behalf.
+    // provider specific, and let you access additional data (like
+    // their friends or email), or perform actions on their behalf.
     successRedirect: '/',
     // Specify other config here
   })(req, res, next)
