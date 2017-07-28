@@ -10,11 +10,11 @@ export default function Routes() {
   return (
     <div>
       <Switch>
-        <Route path="/carousel" component={Carousel} />
+        <Route exact path="/" component={Carousel} />
         <Route path="/men" component={Men} />
         <Route path="/women" component={Women} />
         <Route path="/cart" component={Cart} />
-        <Redirect exact from="/" to="/carousel" />
+        <Redirect exact from="/" to="/" />
         <Route component={NotFound} />
       </Switch>
     </div>

@@ -16,35 +16,33 @@ const remove = id => ({ type: REMOVE_PRODUCT, id })
 export const loadProducts = () => {
     return (dispatch) => {
         axios.get('api/products')
-            .then((products) => {
-                dispatch(load(products))
+            .then((res) => (dispatch(load(res.data))))
+            .catch(err => console.error('Failed Loading', err))
+    }
+}
+
+export const addProduct = (product) => {
+    return (dispatch) => {
+        axios.post('api/products', product)
+            .then((res) => dispatch(add(res.data)))
+            .catch(err => console.error('Unable to add product', err))
+    }
+}
+
+export const editProduct = (product) => {
+    return (dispatch) => {
+        axios.put(`api/products/${product.id}`, product)
+            .then((res) => {
+                dispatch(edit(res.data))
             })
     }
 }
 
-export const addProduct = () => {
+export const removeProduct = (id) => {
     return (dispatch) => {
-        axios.post('api/products')
-            .then((product) => {
-                dispatch(add(product))
-            })
-    }
-}
-
-export const editProduct = () => {
-    return (dispatch) => {
-        axios.put('api/products/:id')
-            .then((product) => {
-                dispatch(edit(product))
-            })
-    }
-}
-
-export const removeProduct = () => {
-    return (dispatch) => {
-        axios.delete('api/products/:id')
+        axios.delete(`api/products/${id}`)
             .then(() => {
-                dispatch(remove())
+                dispatch(remove(id))
             })
     }
 }
