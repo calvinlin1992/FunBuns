@@ -27,6 +27,18 @@ module.exports = db => db.define('products', {
     type: STRING,
     defaultValue: '/images/defaultImage.jpg'
   }
+}, {
+  getterMethods: {
+    gender_display_name: function(){
+      let name = "Unisex"
+      let gender = this.getDataValue('gender')
+
+      if (gender === 'M') name = 'Male'
+      if (gender === 'F') name = 'Female'
+
+      return name
+    }
+  }
 })
 
 module.exports.associations = (Product, { Order, Review }) => {
