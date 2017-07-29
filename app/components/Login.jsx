@@ -4,7 +4,7 @@ import { Button, Form, FormGroup, ControlLabel, Col, FormControl } from 'react-b
 export const Login = ({ login }) => (
   <form onSubmit={evt => {
     evt.preventDefault()
-    login(evt.target.username.value, evt.target.password.value)
+    login(evt.target.email.value, evt.target.password.value)
   }}>
     <Form horizontal>
       <FormGroup controlId="email">
@@ -12,7 +12,7 @@ export const Login = ({ login }) => (
           Email
         </Col>
         <Col sm={4}>
-          <FormControl type="email" placeholder="Email" />
+          <FormControl name='email' type="email" placeholder="Email" />
         </Col>
       </FormGroup>
       <FormGroup controlId="password">
@@ -20,7 +20,7 @@ export const Login = ({ login }) => (
           Password
         </Col>
         <Col sm={4}>
-          <FormControl type="password" placeholder="Password" />
+          <FormControl name='password' type="password" placeholder="Password" />
         </Col>
       </FormGroup>
       <FormGroup>
