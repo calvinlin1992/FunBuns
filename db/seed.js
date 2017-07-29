@@ -60,7 +60,7 @@ const products = seed(Product, {
     gender: 'M',
     color: 'jet black',
     style: 'samurai classic',
-    price: '9.99',
+    price: '22.50',
     length: 'short',
     image_url: '/images/jetBlackShortM.jpg'
 
@@ -70,7 +70,7 @@ const products = seed(Product, {
     gender: 'M',
     color: 'bear brown',
     style: 'princess leia',
-    price: '9.99',
+    price: '12.50',
     length: 'long',
     image_url: '/images/leiaLongM.jpg'
 
@@ -80,7 +80,7 @@ const products = seed(Product, {
     gender: 'F',
     color: 'straight blonde',
     style: 'minimane',
-    price: '9.99',
+    price: '8.45',
     length: 'long',
     image_url: '/images/blondeBunminimaneF.jpg'
 
@@ -90,7 +90,7 @@ const products = seed(Product, {
     gender: 'M',
     color: 'jet black',
     style: 'dread bun',
-    price: '9.99',
+    price: '15.30',
     length: 'short',
     image_url: '/images/dreadShortM.jpg'
 
@@ -100,7 +100,7 @@ const products = seed(Product, {
     gender: 'F',
     color: 'dirty blonde',
     style: 'samurai classic',
-    price: '9.99',
+    price: '5.99',
     length: 'short',
     image_url: '/images/dirtyBlondeF.jpg'
   }
