@@ -29,7 +29,7 @@ class ProductsContainer extends Component {
                     <h3>{product.name}</h3>
                     <p>Size: {product.length}</p>
                     <p>Price: ${product.price}</p>
-                    <p>Gender: {product.genderDisplayName}</p>
+                    <p>Gender: {product.gender_display_name}</p>
                   </div>
                 </Thumbnail>
               </Col>
