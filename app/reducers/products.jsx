@@ -15,7 +15,7 @@ const remove = id => ({ type: REMOVE_PRODUCT, id })
 /* --------------------- THUNKS -------------------- */
 export const loadProducts = () => {
     return (dispatch) => {
-        axios.get('api/products')
+        axios.get('/api/products')
             .then((res) => (dispatch(load(res.data))))
             .catch(err => console.error('Failed Loading', err))
     }
@@ -23,7 +23,7 @@ export const loadProducts = () => {
 
 export const addProduct = (product) => {
     return (dispatch) => {
-        axios.post('api/products', product)
+        axios.post('/api/products', product)
             .then((res) => dispatch(add(res.data)))
             .catch(err => console.error('Unable to add product', err))
     }
@@ -31,7 +31,7 @@ export const addProduct = (product) => {
 
 export const editProduct = (product) => {
     return (dispatch) => {
-        axios.put(`api/products/${product.id}`, product)
+        axios.put(`/api/products/${product.id}`, product)
             .then((res) => {
                 dispatch(edit(res.data))
             })
@@ -40,7 +40,7 @@ export const editProduct = (product) => {
 
 export const removeProduct = (id) => {
     return (dispatch) => {
-        axios.delete(`api/products/${id}`)
+        axios.delete(`/api/products/${id}`)
             .then(() => {
                 dispatch(remove(id))
             })
@@ -48,32 +48,29 @@ export const removeProduct = (id) => {
 }
 
 /* --------------------- REDUCER ------------------- */
-export default function(state = [], action) {
-    let newState
+export default function reducer(state = [], action) {
 
     switch (action.type) {
         case 'LOAD_PRODUCTS':
-            newState = action.products
-        break
+            state = action.products
+            break
 
         case 'ADD_PRODUCT':
-            newState = [...state, action.product]
-        break
+            state = [...state, action.product]
+            break
 
         case 'EDIT_PRODUCT':
-            state.map((product) => {
+            state = state.map((product) => {
                 return product.id === action.product.id ? action.product : product
             })
-        break
+            break
 
         case 'REMOVE_PRODUCT':
-            state.filter((product) => {
+            state = state.filter((product) => {
                 return product.id !== action.product.id
             })
-        break
-
-        default: return state
+            break
     }
 
-    return newState
+    return state
 }
