@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Grid, Row, Col, Thumbnail, Button } from 'react-bootstrap'
 import { loadProducts } from '../reducers/products'
+import Product from './Product'
 
 class ProductsContainer extends Component {
   constructor(props) {
@@ -12,6 +13,9 @@ class ProductsContainer extends Component {
 
   _renderProductList() {
     let products = this.props.products
+
+    // If the user selected Men's or Women's products
+    // then filter the products array accordingly.
     if (this.props.productType) {
       products = products.filter(product => {
         return product.gender === this.props.productType
@@ -19,28 +23,19 @@ class ProductsContainer extends Component {
     }
 
     return (
-      <div>
-        {
-          products.map(product => {
-            return (
-              <Col sm={4} key={product.id}>
-                <Thumbnail src={product.image_url} alt={product.name}>
-                  <div className="product_card_content">
-                    <h3>{product.name}</h3>
-                    <p>Size: {product.length}</p>
-                    <p>Price: ${product.price}</p>
-                    <p>Gender: {product.gender_display_name}</p>
-                  </div>
-                </Thumbnail>
-              </Col>
-            )
-          })
-        }
-      </div>
+      products.map(product => {
+        return (
+          <Col sm={4} key={product.id}>
+            <Product product={product} />
+          </Col>
+        )
+      })
     )
   }
 
   componentWillMount() {
+    // Grab the products information from thunks.
+    // This will put products on the this.props object.
     this.props.fetchInitialData();
   }
 
