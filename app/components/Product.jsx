@@ -102,7 +102,9 @@ class Product extends Component {
               {this.state.buttonLabel}
             </Button>
           </div>
-          <Rating initialRate={Number(product.avg_review)} readonly />
+
+          <Rating initialRate={parseInt(product.avg_review)} readonly />
+
         </div>
       </Thumbnail>
     );
