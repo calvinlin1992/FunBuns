@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Grid, Row, Col, Thumbnail, Button } from 'react-bootstrap'
+var Rating = require('react-rating');
 import { loadProducts } from '../reducers/products'
 import Product from './Product'
+
 
 class ProductsContainer extends Component {
   constructor(props) {
@@ -12,6 +14,7 @@ class ProductsContainer extends Component {
   }
 
   _renderProductList() {
+
     let products = this.props.products
 
     // If the user selected Men's or Women's products
@@ -49,6 +52,8 @@ class ProductsContainer extends Component {
       </Grid>
     )
   }
+
+  
 }
 
 const mapStateToProps = (state) => {
