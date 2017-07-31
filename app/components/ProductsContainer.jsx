@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Grid, Row, Col, Thumbnail, Button } from 'react-bootstrap'
+var Rating = require('react-rating');
 
 
 class ProductsContainer extends Component {
@@ -26,6 +27,16 @@ class ProductsContainer extends Component {
                     <p>Size: {product.length}</p>
                     <p>Price: ${product.price}</p>
                     <p>Gender: {product.genderDisplayName}</p>
+                   <Rating
+  start={11}
+  stop={1}
+  step={-2}
+/>
+			<div className="stepper-input">
+				<a href="#" className="decrement" >–</a>
+				<input ref="feedQty" type="number" className="quantity"  />
+				<a href="#" className="increment" >+</a>
+			</div>
                   </div>
                 </Thumbnail>
               </Col>
@@ -35,6 +46,8 @@ class ProductsContainer extends Component {
       </div>
     )
   }
+
+
 
   componentWillMount() {
     let product1 = {
@@ -111,6 +124,8 @@ class ProductsContainer extends Component {
       </Grid>
     )
   }
+
+  
 }
 
 export default ProductsContainer
