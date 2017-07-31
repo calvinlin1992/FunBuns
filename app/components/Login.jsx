@@ -33,13 +33,9 @@ export const Login = ({ login, loginFB }) => (
         </FormGroup>
       </Form>
     </form>
-    <form>
-      <Form>
-        <div className="well" style={wellStyles}>
-          <a href="/api/auth/login/facebook"><Button bsStyle="primary" bsSize="large" block>Facebook Login</Button></a>
-        </div>
-      </Form>
-    </form>
+    <div className="well" style={wellStyles}>
+      <a href="/api/auth/login/facebook"><Button bsStyle="primary" bsSize="large" block>Facebook Login</Button></a>
+    </div>
   </div>
 )
 
