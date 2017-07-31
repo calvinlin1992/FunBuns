@@ -9,7 +9,7 @@ export const loginFB = () =>
     dispatch =>
         axios.get('/api/auth/login/facebook')
             .then(response => {
-                console.log(response.data)
+                console.log('made it into then, here is response data: ', response.data)
                 const theUser = response.data
                 dispatch(authenticated(theUser))
             })

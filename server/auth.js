@@ -133,6 +133,31 @@ auth.post('/login/local', passport.authenticate('local', { successRedirect: '/' 
 
 // GET requests for OAuth login:
 // Register this route as a callback URL with OAuth provider
+/*
+  I don't understand this. Questions:
+  (1) req.params.strategy - is this supposed to match to some variable? Like is supposed to some facebook variable if we're using facebook OAuth?
+  (2) Not understanding the 2nd argument, it appears authenticate takes an object as a second variable, with specification for successRedirects but also for what info to pull from the OAuth provider (scopes?)?
+  (3) In the documentation, there's a function that takes in accessToken, refreshToken, profile, & done but here we just have something that handles req, res, next?? Also where's the comma??
+
+      var passport = require('passport')
+        , FacebookStrategy = require('passport-facebook').Strategy;
+
+      passport.use(new FacebookStrategy({
+          clientID: FACEBOOK_APP_ID,
+          clientSecret: FACEBOOK_APP_SECRET,
+          callbackURL: "http://www.example.com/auth/facebook/callback"
+        },
+        function(accessToken, refreshToken, profile, done) {
+          User.findOrCreate(..., function(err, user) {
+            if (err) { return done(err); }
+            done(null, user);
+          });
+        }
+
+  (4) Currently receiving the error "No 'Access-Control-Allow-Origin' header is present on the requested resource".
+  (5) I have a thunks get request linked up to a button right now
+));
+*/
 auth.get('/login/:strategy', (req, res, next) => {
   console.log(`we logged in with ${req.params.strategy}! yay`)
   passport.authenticate(req.params.strategy, {

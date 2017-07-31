@@ -33,13 +33,10 @@ export const Login = ({ login, loginFB }) => (
         </FormGroup>
       </Form>
     </form>
-    <form onSubmit={evt => {
-      evt.preventDefault()
-      loginFB()
-    }}>
+    <form>
       <Form>
         <div className="well" style={wellStyles}>
-          <Button bsStyle="primary" bsSize="large" block type="submit">Facebook Login</Button>
+          <a href="/api/auth/login/facebook"><Button bsStyle="primary" bsSize="large" block>Facebook Login</Button></a>
         </div>
       </Form>
     </form>
