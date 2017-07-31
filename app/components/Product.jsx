@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Thumbnail, Button } from "react-bootstrap";
 import Counter from "./Counter";
-var Rating = require("react-rating");
+import Rating from "react-rating"
 
 class Product extends Component {
   constructor(props) {
@@ -102,7 +102,9 @@ class Product extends Component {
               {this.state.buttonLabel}
             </Button>
           </div>
+
           <Rating initialRate={parseInt(product.avg_review)} readonly />
+
         </div>
       </Thumbnail>
     );

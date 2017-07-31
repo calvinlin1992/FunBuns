@@ -14,7 +14,7 @@ module.exports = db => db.define('products', {
     type: ENUM('classic', 'princess leia', 'samurai classic', 'minimane', 'dread bun')
   },
   price: {
-    type: DECIMAL,
+    type: DECIMAL(5,2),
     allowNull: false
   },
   length: {
@@ -28,7 +28,7 @@ module.exports = db => db.define('products', {
     defaultValue: '/images/defaultImage.jpg'
   },
   avg_review: {
-    type: DECIMAL,
+    type: DECIMAL(2,1),
     defaultValue: 0
   }
 }, {
