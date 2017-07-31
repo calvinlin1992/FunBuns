@@ -63,7 +63,7 @@ const products = seed(Product, {
     price: '22.50',
     length: 'short',
     image_url: '/images/jetBlackShortM.jpg',
-    avg_review: 4
+    avg_review: 4.4
 
   },
   product2: {
@@ -74,7 +74,7 @@ const products = seed(Product, {
     price: '12.50',
     length: 'long',
     image_url: '/images/leiaLongM.jpg',
-    avg_review: 3
+    avg_review: 3.3
 
   },
   product3: {
@@ -85,7 +85,7 @@ const products = seed(Product, {
     price: '8.45',
     length: 'long',
     image_url: '/images/blondeBunminimaneF.jpg',
-    avg_review: 4
+    avg_review: 4.2
 
   },
   product4: {
@@ -107,7 +107,7 @@ const products = seed(Product, {
     price: '5.99',
     length: 'short',
     image_url: '/images/dirtyBlondeF.jpg',
-    avg_review: 2
+    avg_review: 2.6
   }
 })
 
