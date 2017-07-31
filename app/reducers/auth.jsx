@@ -5,16 +5,6 @@ export const authenticated = user => ({
     type: AUTHENTICATED, user
 })
 
-export const loginFB = () =>
-    dispatch =>
-        axios.get('/api/auth/login/facebook')
-            .then(response => {
-                console.log('made it into then, here is response data: ', response.data)
-                const theUser = response.data
-                dispatch(authenticated(theUser))
-            })
-            .catch(failed => dispatch(authenticated(null)))
-
 export const login = (username, password) =>
     dispatch =>
         axios.post('/api/auth/login/local',

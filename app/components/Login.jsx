@@ -39,13 +39,13 @@ export const Login = ({ login, loginFB }) => (
   </div>
 )
 
-import { login, loginFB } from 'APP/app/reducers/auth'
+import { login } from 'APP/app/reducers/auth'
 import { connect } from 'react-redux'
 
 // props, sends login as a prop
 export default connect(
   state => ({}),  // mapStateToProps
-  { login, loginFB },        // mapDispatchToProps
+  { login },        // mapDispatchToProps
 )(Login)
 
 // <input name="username" />
