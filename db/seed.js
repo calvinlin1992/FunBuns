@@ -62,7 +62,8 @@ const products = seed(Product, {
     style: 'samurai classic',
     price: '22.50',
     length: 'short',
-    image_url: '/images/jetBlackShortM.jpg'
+    image_url: '/images/jetBlackShortM.jpg',
+    avg_review: 4
 
   },
   product2: {
@@ -72,7 +73,8 @@ const products = seed(Product, {
     style: 'princess leia',
     price: '12.50',
     length: 'long',
-    image_url: '/images/leiaLongM.jpg'
+    image_url: '/images/leiaLongM.jpg',
+    avg_review: 3
 
   },
   product3: {
@@ -82,7 +84,8 @@ const products = seed(Product, {
     style: 'minimane',
     price: '8.45',
     length: 'long',
-    image_url: '/images/blondeBunminimaneF.jpg'
+    image_url: '/images/blondeBunminimaneF.jpg',
+    avg_review: 4
 
   },
   product4: {
@@ -92,7 +95,8 @@ const products = seed(Product, {
     style: 'dread bun',
     price: '15.30',
     length: 'short',
-    image_url: '/images/dreadShortM.jpg'
+    image_url: '/images/dreadShortM.jpg',
+    avg_review: 5
 
   },
   product5: {
@@ -102,7 +106,8 @@ const products = seed(Product, {
     style: 'samurai classic',
     price: '5.99',
     length: 'short',
-    image_url: '/images/dirtyBlondeF.jpg'
+    image_url: '/images/dirtyBlondeF.jpg',
+    avg_review: 2
   }
 })
 

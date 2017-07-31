@@ -26,6 +26,10 @@ module.exports = db => db.define('products', {
   image_url: {
     type: STRING,
     defaultValue: '/images/defaultImage.jpg'
+  },
+  avg_review: {
+    type: DECIMAL,
+    defaultValue: 0
   }
 }, {
   getterMethods: {
