@@ -23,9 +23,21 @@ module.exports = db => db.define('products', {
   color: {
     type: ENUM('jet black', 'bear brown', 'lighter brown', 'straight blonde', 'dirty blonde')
   },
-  image: {
+  image_url: {
     type: STRING,
-    defaultValue: ''
+    defaultValue: '/images/defaultImage.jpg'
+  }
+}, {
+  getterMethods: {
+    gender_display_name: function(){
+      let name = "Unisex"
+      let gender = this.getDataValue('gender')
+
+      if (gender === 'M') name = 'Male'
+      if (gender === 'F') name = 'Female'
+
+      return name
+    }
   }
 })
 

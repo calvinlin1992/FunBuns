@@ -42,7 +42,7 @@ const users = seed(User, {
     last_name: 'Elabdouni',
     password: '1234'
   },
-  Bob: {
+  bob: {
     email: 'bob@funbuns.com',
     first_name: 'Bob',
     last_name: 'Willow',
@@ -60,9 +60,9 @@ const products = seed(Product, {
     gender: 'M',
     color: 'jet black',
     style: 'samurai classic',
-    price: '9.99',
+    price: '22.50',
     length: 'short',
-    imageUrl: '../public/images/jetBlackShortM.jpg'
+    image_url: '/images/jetBlackShortM.jpg'
 
   },
   product2: {
@@ -70,9 +70,9 @@ const products = seed(Product, {
     gender: 'M',
     color: 'bear brown',
     style: 'princess leia',
-    price: '9.99',
+    price: '12.50',
     length: 'long',
-    imageUrl: '../public/images/leiaLongM.jpg'
+    image_url: '/images/leiaLongM.jpg'
 
   },
   product3: {
@@ -80,9 +80,9 @@ const products = seed(Product, {
     gender: 'F',
     color: 'straight blonde',
     style: 'minimane',
-    price: '9.99',
+    price: '8.45',
     length: 'long',
-    imageUrl: '../public/images/blondeBunminimaneF.jpg'
+    image_url: '/images/blondeBunminimaneF.jpg'
 
   },
   product4: {
@@ -90,9 +90,9 @@ const products = seed(Product, {
     gender: 'M',
     color: 'jet black',
     style: 'dread bun',
-    price: '9.99',
+    price: '15.30',
     length: 'short',
-    imageUrl: '../public/images/dreadShortM.jpg'
+    image_url: '/images/dreadShortM.jpg'
 
   },
   product5: {
@@ -100,9 +100,9 @@ const products = seed(Product, {
     gender: 'F',
     color: 'dirty blonde',
     style: 'samurai classic',
-    price: '9.99',
+    price: '5.99',
     length: 'short',
-    imageUrl: '../public/images/dirtyBlondeF.jpg'
+    image_url: '/images/dirtyBlondeF.jpg'
   }
 })
 
@@ -137,7 +137,7 @@ const orders = seed(Order,
       paid: false,
       status: 'cart',
       tracking_number: '21343547546435244325',
-      user_id: users.Bob.id
+      user_id: users.bob.id
     }
   })
 )
