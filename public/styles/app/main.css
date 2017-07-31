@@ -5,14 +5,11 @@
   font-size: 1.5em;
 }
 .thumbnail>img {
-  margin-left: 0;
-  padding-left: 15px;
-  width: 300px;
   height: 300px;
 }
 .product_card_content {
   border-top: 2px solid gray;
-  padding-left: 15px;
+  text-align: center;
 }
 .carousel_container {
   height: 500px;
@@ -26,4 +23,70 @@
 }
 .bg_color_lightpink {
   background-color: #D733FF /*'lightpink';*/
+}
+
+.stepper-input {
+  display: flex;
+  display: -webkit-flex;
+  color: #666;
+  max-width: 120px;
+  margin: 0 auto;
+}
+
+.stepper-input .increment,
+.stepper-input .decrement {
+  height: 24px;
+  width: 24px;
+  border: 1px solid #ccc;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 50%;
+  text-decoration: none;
+  color: inherit;
+  font-size: 24px;
+  line-height: 22px;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+
+.stepper-input .increment:hover,
+.stepper-input .decrement:hover {
+  color: #077915;
+  border-color: #077915;
+}
+
+.stepper-input .increment:active
+.stepper-input .decrement:active {
+  color: #fff;
+  border-color: #077915;
+  background: lighten(#077915, 15%);
+}
+
+.stepper-input .quantity {
+  height: 24px;
+  width: 48px;
+  text-align: center;
+  margin: 0 12px;
+  border-radius: 2px;
+  border: 1px solid #ccc;
+}
+
+.stepper-input .quantity::selection {
+  background: #077915;
+  color: #fff;
+}
+
+.stepper-input .quantity::-moz-selection {
+  background: #077915;
+  color: #fff;
+  text-shadow: none;
+}
+
+
+.product_action {
+   padding: 16px; 
+}
+
+.product_action button {
+  width: 100%;
 }
