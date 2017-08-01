@@ -5,6 +5,10 @@ const db = require("APP/db");
 
 module.exports = router;
 
+// SB KH - clean up logic about how we are handling session.cart
+// try logging your cart more!
+// plan for when the array is empty -- what do we want the front end to receive?
+
 // GET api/product
 router.get("/", function(req, res, next) {
   // Product.findAll()
@@ -13,6 +17,10 @@ router.get("/", function(req, res, next) {
   console.log("fetching cart from session ", req.session.cart)
   res.json(req.session.cart);
 });
+
+
+// SB KH - put comments in your code to keep track of ToDos
+// multiline comments at top
 
 
 // POST /api/product
@@ -34,6 +42,7 @@ router.delete("/:productId", function(req, res, next) {
     .catch(next);
 });
 
+// You usually want to send the product back when you update it
 router.put("/:productId", function(req, res, next) {
   const productId = req.params.productId;
 

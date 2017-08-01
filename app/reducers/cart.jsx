@@ -13,6 +13,7 @@ const edit = product => ({ type: EDIT_PRODUCT_QUANTITY, product });
 const remove = id => ({ type: REMOVE_PRODUCT_FROM_CART, id });
 
 /* --------------------- THUNKS -------------------- */
+// see what you're sending back and how you are handling errors and empty carts
 export const loadCartFromSession = () => {
   console.log("add to cart thunk")
   return dispatch => {
@@ -33,6 +34,7 @@ export const addProductToCart = product => {
   };
 };
 
+// use catches! error handling matters!
 export const editProductQuantity = product => {
   return dispatch => {
     axios.put("/api/cart", product).then(res => {
@@ -41,6 +43,8 @@ export const editProductQuantity = product => {
   };
 };
 
+// `/api/cart/products/${id}`
+// stick with RESTful conventions
 export const removeProductFromCart = id => {
   return dispatch => {
     axios.delete(`/api/cart/${id}`).then(() => {
