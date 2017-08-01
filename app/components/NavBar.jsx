@@ -4,9 +4,8 @@ import { Nav, NavItem, Navbar, Glyphicon } from 'react-bootstrap'
 import { connect } from 'react-redux'
 
 class NavigationBar extends Component {
-
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
   }
 
   render() {
@@ -23,7 +22,7 @@ class NavigationBar extends Component {
             </NavItem>
             <NavItem eventKey={2}>
               <Link to="/women">Womens</Link>
-              </NavItem>
+            </NavItem>
           </Nav>
           <Nav pullRight>
             <NavItem eventKey={3}>
@@ -32,7 +31,9 @@ class NavigationBar extends Component {
               </Link>
             </NavItem>
             <NavItem eventKey={4}>
-              <Link to="/account">Account</Link>
+              {
+                this.props.user === "" ? <Link to="/account">Login</Link> : <Link to="/userProfile">Your Account</Link>
+              }
             </NavItem>
           </Nav>
         </Navbar.Collapse>
