@@ -5,6 +5,9 @@ export const authenticated = user => ({
     type: AUTHENTICATED, user
 })
 
+// SJB, KH: SIGN UP -- naming, maybe belongs in the user reducer
+// KH - no local sign up!
+// stick to CRUD conventions, REST conventions
 export const update = (userObj) =>
     dispatch =>
         axios.put(`/api/auth/update/${userObj.id}`, { userObj })

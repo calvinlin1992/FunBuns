@@ -33,11 +33,14 @@ export const addProduct = product => {
   };
 };
 
+// stay consistent with indentation
 export const editProduct = product => {
   return dispatch => {
-    axios.put(`/api/products/${product.id}`, product).then(res => {
-      dispatch(edit(res.data));
-    });
+    axios
+      .put(`/api/products/${product.id}`, product)
+      .then(res => {
+        dispatch(edit(res.data));
+      });
   };
 };
 
@@ -49,14 +52,20 @@ export const removeProduct = id => {
   };
 };
 
+// SB/KH: state can be an object that has all products and selected products
 /* --------------------- REDUCER ------------------- */
 export default function reducer(state = [], action) {
   switch (action.type) {
+    // SJB/KH: make new state, don't assign over the existing state or mutate
+    // this is only working because of unusual PASS BY SHARING behavior in JavaScript
+    // because JavaScript is not true pass by reference
     case "LOAD_PRODUCTS":
+      // just return action.products
       state = action.products;
       break;
 
     case "ADD_PRODUCT":
+      // return [...state, action.product]
       state = [...state, action.product];
       break;
 
