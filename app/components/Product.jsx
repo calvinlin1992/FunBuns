@@ -13,7 +13,6 @@ class Product extends Component {
 
     // Local state initialization
     this.state = {
-      selectedProduct: {},
       buttonLabel: this.BTN_LABEL_ADD,
       isButtonDisabled: false,
       quantity: 1
@@ -50,15 +49,6 @@ class Product extends Component {
       quantity
     });
 
-    this.setState({
-      selectedProduct: {
-        product_id,
-        image_url,
-        name,
-        price,
-        quantity
-      }
-    });
 
     this.setState(
       {
