@@ -22,7 +22,6 @@ const App = () => {
   return (
     <div>
       <nav><NavigationBar /></nav>
-            <aside><SideBarExample /></aside>
       <main><Routes /></main>
       <footer><Footer /></footer>
     </div>
