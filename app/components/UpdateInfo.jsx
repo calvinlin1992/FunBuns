@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, wellStyles, Form, FormGroup, ControlLabel, Col, FormControl } from 'react-bootstrap'
 
-function Profile(props) {
+function UpdateInfo(props) {
   return (
     <div>
       <form onSubmit={evt => {
@@ -13,6 +13,7 @@ function Profile(props) {
           paypal: evt.target.paypal.value,
           phone: evt.target.phone.value,
         })
+        props.history.push('/home')
       }}>
         <Form horizontal>
           <FormGroup controlId="email">
@@ -68,4 +69,4 @@ export default connect(
   dispatch => ({
     update: userObj => dispatch(update(userObj))
   }),        // mapDispatchToProps
-)(Profile)
+)(UpdateInfo)

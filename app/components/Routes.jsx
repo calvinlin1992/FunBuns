@@ -6,7 +6,8 @@ import Women from './Womens'
 import Cart from './Cart'
 import NotFound from './NotFound'
 import Login from './Login'
-import Profile from './Profile'
+import UpdateInfo from './UpdateInfo'
+import UserProfile from './UserProfile'
 
 export default function Routes() {
   return (
@@ -17,7 +18,8 @@ export default function Routes() {
         <Route path="/women" component={Women} />
         <Route path="/cart" component={Cart} />
         <Route path="/account" component={Login} />
-        <Route path="/profile" component={Profile} />
+        <Route path="/updateInfo" component={UpdateInfo} />
+        <Route path="/userProfile" component={UserProfile} />
         <Redirect exact from="/" to="/home" />
         <Route component={NotFound} />
       </Switch>
