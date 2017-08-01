@@ -3,7 +3,7 @@
 const db = require('APP/db')
 const User = db.model('users')
 
-const { mustBeLoggedIn, forbidden, mustBeAdmin, mustBeLoggedInOrAdmin } = require('./auth.filters')
+const { forbidden, mustBeAdmin, mustBeLoggedInOrAdmin } = require('./auth.filters')
 
 module.exports = require('express').Router()
   .get('/',
@@ -35,7 +35,7 @@ module.exports = require('express').Router()
         .then(user => res.sendStatus(300))
         .catch(next)))
   .get('/:id',
-  mustBeLoggedIn,
+  mustBeLoggedInOrAdmin,
   (req, res, next) =>
     User.findById(req.params.id)
       .then(user => res.json(user))

@@ -10,7 +10,6 @@ api
   .use('/reviews', require('./review'))
   .use('/products', require('./product'))
   .use('/cart', require('./cart'))
-  .use("/products", require('./product'))
 
 
 // No routes matched? 404.
