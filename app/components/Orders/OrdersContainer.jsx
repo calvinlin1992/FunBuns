@@ -4,9 +4,8 @@ import { Link, NavLink, Route } from 'react-router-dom'
 import { Grid, Row, Col, Thumbnail, Button } from 'react-bootstrap'
 
 import { loadOrders } from '../../reducers/orders'
-import Order from './Order'
 
-class OrdersContainer extends Component {
+class Orders extends Component {
   componentDidMount() {
     // Grab the order information from thunks.
     // This will put orders on the this.props object.
@@ -49,4 +48,4 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(OrdersContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(Orders)
