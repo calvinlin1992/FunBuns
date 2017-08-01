@@ -5,6 +5,12 @@ export const authenticated = user => ({
     type: AUTHENTICATED, user
 })
 
+export const update = (userObj) =>
+    dispatch =>
+        axios.put(`/api/auth/update/${userObj.id}`, { userObj })
+            .then(() => dispatch(whoami()))
+            .catch(() => dispatch(whoami()))
+
 export const login = (username, password) =>
     dispatch =>
         axios.post('/api/auth/login/local',

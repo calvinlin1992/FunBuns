@@ -36,6 +36,9 @@ export const Login = ({ login, loginFB }) => (
     <div className="well" style={wellStyles}>
       <a href="/api/auth/login/facebook"><Button bsStyle="primary" bsSize="large" block>Facebook Login</Button></a>
     </div>
+    <div className="well" style={wellStyles}>
+      <a href="/api/auth/login/google"><Button bsStyle="danger" bsSize="large" block>Google Login</Button></a>
+    </div>
   </div>
 )
 

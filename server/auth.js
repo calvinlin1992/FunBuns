@@ -42,6 +42,7 @@ OAuth.setupStrategy({
     clientID: env.FACEBOOK_CLIENT_ID,
     clientSecret: env.FACEBOOK_CLIENT_SECRET,
     callbackURL: `${app.baseUrl}/api/auth/login/facebook`,
+    profileFields: ['email', 'name', 'displayName']
   },
   passport
 })
@@ -135,16 +136,36 @@ auth.post('/login/local', passport.authenticate('local', { successRedirect: '/' 
 // Register this route as a callback URL with OAuth provider
 auth.get('/login/:strategy', (req, res, next) => {
   console.log(`we logged in with ${req.params.strategy}! yay`)
+  // console.log('this is req from strategy: ', req.user)
   passport.authenticate(req.params.strategy, {
-    //scope: 'email', // You may want to ask for additional OAuth scopes. These are
+    scope: ['email'], // You may want to ask for additional OAuth scopes. These are
     // provider specific, and let you access additional data (like
     // their friends or email), or perform actions on their behalf.
     successRedirect: '/',
     // Specify other config here
   })(req, res, next)
-  // console.log(req.user.dataValues)
+  // console.log('here is req.user from .get: ', req.user)
 }
 )
+
+auth.put('/update/:id', (req, res, next) => {
+  console.log('from the post request: ', req.body.userObj)
+  // now to write the DB logic
+  User.update({
+    email: req.body.userObj.email,
+    paypal_name: req.body.userObj.paypal,
+    address: req.body.userObj.address,
+    phone_number: req.body.userObj.phone
+  }, {
+    where: {
+      id: req.params.id
+    },
+    returning: true
+  })
+  .then(results => {
+
+  })
+})
 
 auth.post('/logout', (req, res) => {
   req.logout()
@@ -152,3 +173,8 @@ auth.post('/logout', (req, res) => {
 })
 
 module.exports = auth
+
+// email: req.body.userObj.email,
+//   address: req.body.userObj.address,
+//     paypal_name: req.body.userObj.paypal,
+//       phone_number: req.body.userObj.phone
