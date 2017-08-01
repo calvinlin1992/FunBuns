@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Thumbnail, Button } from "react-bootstrap";
 import Counter from "./Counter";
-import Rating from "react-rating"
+import Rating from "react-rating";
 
 class Product extends Component {
   constructor(props) {
@@ -40,6 +40,15 @@ class Product extends Component {
 
   _addToCart(product_id, image_url, name, price) {
     let quantity = this.state.quantity;
+
+
+    this.props.addToCart({
+      product_id,
+      image_url,
+      name,
+      price,
+      quantity
+    });
 
     this.setState({
       selectedProduct: {
@@ -104,7 +113,6 @@ class Product extends Component {
           </div>
 
           <Rating initialRate={parseInt(product.avg_review)} readonly />
-
         </div>
       </Thumbnail>
     );
