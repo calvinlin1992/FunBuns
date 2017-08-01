@@ -3,7 +3,7 @@
 const db = require('APP/db')
 const User = db.model('users')
 
-const { mustBeLoggedIn, forbidden } = require('./auth.filters')
+const { forbidden, mustBeAdmin, mustBeLoggedInOrAdmin } = require('./auth.filters')
 
 module.exports = require('express').Router()
   .get('/',
@@ -13,7 +13,7 @@ module.exports = require('express').Router()
   // If you want to only let admins list all the users, then you'll
   // have to add a role column to the users table to support
   // the concept of admin users.
-  forbidden('listing users is not allowed'),
+  mustBeAdmin,
   (req, res, next) =>
     User.findAll()
       .then(users => res.json(users))
@@ -24,7 +24,7 @@ module.exports = require('express').Router()
       .then(user => res.status(201).json(user))
       .catch(next))
   .put('/:id',
-  mustBeLoggedIn,
+  mustBeLoggedInOrAdmin,
   (req, res, next) =>
     User.update(req.body,
       {
@@ -35,7 +35,7 @@ module.exports = require('express').Router()
         .then(user => res.sendStatus(300))
         .catch(next)))
   .get('/:id',
-  mustBeLoggedIn,
+  mustBeLoggedInOrAdmin,
   (req, res, next) =>
     User.findById(req.params.id)
       .then(user => res.json(user))
