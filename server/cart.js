@@ -10,17 +10,17 @@ router.get("/", function(req, res, next) {
   // Product.findAll()
   //   .then(products => res.json(products))
   //   .catch(next);
-  console.log("fetching cart from session ", req.session.cart)
+  console.log("fetching cart from session ", req.session.cart);
   res.json(req.session.cart);
 });
-
 
 // POST /api/product
 router.post("/", function(req, res, next) {
   if (!req.session.cart) req.session.cart = [];
 
   req.session.cart.push(req.body);
-    console.log("after push " , req.session.cart);
+  console.log("after push ", req.session.cart);
+  res.json(req.session.cart);
 });
 
 // DELETE /api/product
