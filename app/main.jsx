@@ -16,6 +16,7 @@ import store from './store'
 import NavigationBar from './components/NavBar'
 import Footer from './components/Footer'
 import Routes from './components/Routes'
+import SideBarExample from './components/SideBar'
 
 const App = () => {
   return (

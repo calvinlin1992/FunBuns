@@ -1,6 +1,6 @@
 "use strict";
 
-const { STRING, BOOLEAN, ENUM, DATE, NOW } = require("sequelize");
+const { STRING, BOOLEAN, ENUM, DECIMAL } = require("sequelize");
 
 module.exports = db =>
   db.define("orders", {
@@ -14,6 +14,10 @@ module.exports = db =>
     },
     tracking_number: {
       type: STRING
+    },
+    total: {
+      type: DECIMAL(10, 2),
+      allowNull: false,
     }
   });
 
