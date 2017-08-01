@@ -118,30 +118,35 @@ const orders = seed(Order,
       paid: true,
       status: 'shipped',
       tracking_number: '5043504385094385049843',
+      total: 94.78,
       user_id: users.sid.id
     },
     order2: {
       paid: false,
       status: 'processed',
       tracking_number: '09394058904385049340580',
+      total: 107.10,
       user_id: users.anthony.id
     },
     order3: {
       paid: false,
       status: 'cart',
       tracking_number: '98435908349866950984590',
+      total: 242.74,
       user_id: users.calvin.id
     },
     order4: {
       paid: true,
       status: 'delivered',
       tracking_number: '90485908349058340958093',
+      total: 574.48,
       user_id: users.shaun.id
     },
     order5: {
       paid: false,
       status: 'cart',
       tracking_number: '21343547546435244325',
+      total: 403.25,
       user_id: users.bob.id
     }
   })
@@ -211,48 +216,82 @@ const orderProducts = seed(OrderProduct,
 
     'dataset-1_1': {
       order_id: orders.order1.id,
-      product_id: products.product1.id
+      product_id: products.product1.id,
+      quantity: 3,
+      sub_total: 67.50
     },
     'dataset-1_4': {
       order_id: orders.order1.id,
-      product_id: products.product4.id
+      product_id: products.product4.id,
+      quantity: 1,
+      sub_total: 15.30
     },
     'dataset-1_5': {
       order_id: orders.order1.id,
-      product_id: products.product5.id
+      product_id: products.product5.id,
+      quantity: 2,
+      sub_total: 11.98
     },
     'dataset-2_4': {
       order_id: orders.order2.id,
-      product_id: products.product4.id
+      product_id: products.product4.id,
+      quantity: 7,
+      sub_total: 107.10
     },
     'dataset-3_1': {
       order_id: orders.order3.id,
-      product_id: products.product1.id
+      product_id: products.product1.id,
+      quantity: 1,
+      sub_total: 22.50
     },
     'dataset-3_2': {
       order_id: orders.order3.id,
-      product_id: products.product2.id
+      product_id: products.product2.id,
+      quantity: 8,
+      sub_total: 100.00
     },
     'dataset-3_3': {
       order_id: orders.order3.id,
-      product_id: products.product3.id
+      product_id: products.product3.id,
+      quantity: 1,
+      sub_total: 8.45
     },
     'dataset-3_4': {
       order_id: orders.order3.id,
-      product_id: products.product4.id
+      product_id: products.product4.id,
+      quantity: 3,
+      sub_total: 45.90
     },
     'dataset-3_5': {
       order_id: orders.order3.id,
-      product_id: products.product5.id
+      product_id: products.product5.id,
+      quantity: 11,
+      sub_total: 65.89
     },
     'dataset-4_2': {
       order_id: orders.order4.id,
-      product_id: products.product2.id
+      product_id: products.product2.id,
+      quantity: 45,
+      sub_total: 562.50
     },
     'dataset-4_5': {
       order_id: orders.order4.id,
-      product_id: products.product5.id
+      product_id: products.product5.id,
+      quantity: 2,
+      sub_total: 11.98
     },
+    'dataset-5_3': {
+      order_id: orders.order5.id,
+      product_id: products.product3.id,
+      quantity: 30,
+      sub_total: 253.5
+    },
+    'dataset-5_5': {
+      order_id: orders.order5.id,
+      product_id: products.product5.id,
+      quantity: 25,
+      sub_total: 149.75
+    }
   })
 )
 

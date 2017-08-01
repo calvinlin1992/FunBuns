@@ -16,11 +16,13 @@ import store from './store'
 import NavigationBar from './components/NavBar'
 import Footer from './components/Footer'
 import Routes from './components/Routes'
+import SideBarExample from './components/SideBar'
 
 const App = () => {
   return (
     <div>
       <nav><NavigationBar /></nav>
+            <aside><SideBarExample /></aside>
       <main><Routes /></main>
       <footer><Footer /></footer>
     </div>
