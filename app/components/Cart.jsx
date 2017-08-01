@@ -9,11 +9,12 @@ class CartContainer extends Component {
 
   componentWillMount() {
     this.props.getCartFromSession();
-    console.log("mounted")
+    console.log("mounted");
   }
   render() {
-    const products = this.props.cart
-    console.log("products ", products)
+    const products = this.props.cart;
+    console.log("products ", products);
+    const totalPrice = 0;
 
     return (
       <div className="container">
@@ -30,51 +31,53 @@ class CartContainer extends Component {
             </tr>
           </thead>
           <tbody>
-           {products &&
-                      products.map(product => {
-                        return (
-            <tr>
-              <td data-th="Product">
-                <div className="row">
-                  <div className="col-sm-2 hidden-xs">
-                    <img
-                      src={product.image_url}
-                      alt="..."
-                      className="img-responsive"
-                    />
-                  </div>
-                  <div className="col-sm-10">
+            {products &&
+              products.map(product => {
+                return (
+                  <tr>
+                    <td data-th="Product">
+                      <div className="row">
+                        <div className="col-sm-2 hidden-xs">
+                          <img
+                            src={product.image_url}
+                            alt="..."
+                            className="img-responsive"
+                          />
+                        </div>
+                        <div className="col-sm-10">
                           <div key={product.id}>
                             <h4 className="nomargin">
                               {product.name}
                             </h4>
                           </div>
-                    <p>Buns! Buns are fun!</p>
-                  </div>
-                </div>
-              </td>
-              <td data-th="Price">$1.99</td>
-              <td data-th="Quantity">
-                <input
-                  type="number"
-                  className="form-control text-center"
-                  value="1"
-                />
-              </td>
-              <td data-th="Subtotal" className="text-center">
-                1.99
-              </td>
-              <td className="actions" data-th="">
-                <button className="btn btn-info btn-sm">
-                  <i className="fa fa-refresh" />
-                </button>
-                <button className="btn btn-danger btn-sm">
-                  <i className="fa fa-trash-o" />
-                </button>
-              </td>
-            </tr>
-                        )
-                      })}
+                          <p>Buns! Buns are fun!</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td data-th="Price">
+                      {product.price}
+                    </td>
+                    <td data-th="Quantity">
+                      <input
+                        type="number"
+                        className="form-control text-center"
+                        value={product.quantity}
+                      />
+                    </td>
+                    <td data-th="Subtotal" className="text-center">
+                      {product.quantity * product.price}
+                    </td>
+                    <td className="actions" data-th="">
+                      <button className="btn btn-info btn-sm">
+                        <i className="fa fa-refresh" />
+                      </button>
+                      <button className="btn btn-danger btn-sm">
+                        <i className="fa fa-trash-o" />
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
           </tbody>
           <tfoot>
             <tr className="visible-xs">
@@ -90,7 +93,11 @@ class CartContainer extends Component {
               </td>
               <td colSpan="2" className="hidden-xs" />
               <td className="hidden-xs text-center">
-                <strong>Total $1.99</strong>
+                <strong>
+                  {products.reduce(function(sum, product) {
+                    return sum + product.quantity * product.price
+                  }, 0)}
+                </strong>
               </td>
               <td>
                 <a href="#" className="btn btn-success btn-block">

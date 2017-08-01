@@ -17,8 +17,8 @@ export const loadCartFromSession = () => {
   console.log("add to cart thunk")
   return dispatch => {
     axios
-      .get('/api/cart')
-      .then(res => dispatch(load(res.data)))
+      .get("/api/cart")
+      .then(res => dispatch(load(res.data)))     //dispatch(load(res.data))
       .catch(err => console.error('Failed Loading', err))
   }
 }
@@ -28,13 +28,14 @@ export const addProductToCart = product => {
   return dispatch => {
     axios
       .post("/api/cart", product)
-      .then(res => dispatch(add(res.data)))
+      .then(res =>  dispatch(add(res.data)))  //
       .catch(err => console.error("Unable to add product", err));
   };
 };
 
 export const editProductQuantity = product => {
   return dispatch => {
+
     axios.put("/api/cart", product).then(res => {
       dispatch(edit(res.data));
     });
