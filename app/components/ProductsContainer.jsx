@@ -7,7 +7,7 @@ import Product from "./Product";
 
 class ProductsContainer extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this._renderProductList = this._renderProductList.bind(this);
   }

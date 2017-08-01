@@ -1,9 +1,10 @@
 'use strict'
 
 const db = require('APP/db')
+const Order = db.model('orders')
 const User = db.model('users')
 
-const { mustBeLoggedIn, forbidden } = require('./auth.filters')
+const { mustBeLoggedIn, forbidden, mustBeLoggedInOrAdmin, mustBeAdmin } = require('./auth.filters')
 
 module.exports = require('express').Router()
   .get('/',
@@ -13,30 +14,32 @@ module.exports = require('express').Router()
   // If you want to only let admins list all the users, then you'll
   // have to add a role column to the users table to support
   // the concept of admin users.
-  forbidden('listing users is not allowed'),
   (req, res, next) =>
-    User.findAll()
-      .then(users => res.json(users))
+    req.user.is_admin ? Order.findAll() : Order.findAll({where: {id: req.user.id}})
+      .then(orders => res.json(orders))
       .catch(next))
   .post('/',
   (req, res, next) =>
-    User.create(req.body)
-      .then(user => res.status(201).json(user))
+    Order.create(req.body)
+      .then(order => res.status(201).json(order))
       .catch(next))
   .put('/:id',
-  mustBeLoggedIn,
+  mustBeAdmin,
   (req, res, next) =>
-    User.update(req.body,
+    Order.update(req.body,
       {
         where: {
           id: req.params.id
         }
       }
-        .then(user => res.sendStatus(300))
+        .then(order => res.sendStatus(300))
         .catch(next)))
   .get('/:id',
-  mustBeLoggedIn,
   (req, res, next) =>
-    User.findById(req.params.id)
-      .then(user => res.json(user))
+    Order.findAll({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(orders => res.json(orders))
       .catch(next))
