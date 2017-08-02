@@ -6,20 +6,16 @@ import { connect } from 'react-redux'
 export const AdminNavBar = () =>
 
   <Navbar inverse collapseOnSelect>
-    <Navbar.Header>
-      <Navbar.Brand><Link to="/">FunBuns</Link></Navbar.Brand>
-      <Navbar.Toggle />
-    </Navbar.Header>
     <Navbar.Collapse>
       <Nav>
         <NavItem eventKey={1}>
-          <Link to="/viewAllUsers">View All Users</Link>
+          <Link to="/admin/viewAllUsers">View All Users</Link>
         </NavItem>
         <NavItem eventKey={2}>
-          <Link to="/viewAllOrders">View All Orders</Link>
+          <Link to="/admin/viewAllOrders">View All Orders</Link>
         </NavItem>
         <NavItem eventKey={3}>
-          <Link to="/viewAllProducts">View All Products</Link>
+          <Link to="/admin/viewAllProducts">View All Products</Link>
         </NavItem>
       </Nav>
     </Navbar.Collapse>

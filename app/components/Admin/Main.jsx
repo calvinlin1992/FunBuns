@@ -1,5 +1,6 @@
 import React from 'react'
 import { AdminNavBar } from './AdminNav'
+import OrdersContainer from '../Orders/OrdersContainer'
 
 const Main = (props) =>
    (
