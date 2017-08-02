@@ -20,9 +20,9 @@ class Orders extends Component {
         {
           orders.map(order =>
             (
-              <Row>
-                <Col md={4} key={order.id}>
-                  <Link to={`/viewAllOrders/${order.id}`}>
+              <Row key={order.id}>
+                <Col md={4}>
+                  <Link to={`admin/viewAllOrders/${order.id}`}>
                     Order #{order.tracking_number}
                   </Link>
                 </Col>
@@ -38,7 +38,7 @@ class Orders extends Component {
 /* -------------- Props Connector ---------------- */
 const mapStateToProps = (state) => {
   return {
-    orders: state.orders
+    orders: state.orders.orders
   }
 }
 
