@@ -1,29 +1,22 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Button, Glyphicon } from 'react-bootstrap';
 import { loadCartFromSession, removeProductFromCart } from "../reducers/cart";
-import Popup from 'react-popup';
 
 class CartContainer extends Component {
   constructor(props) {
     super(props);
 
     // Method Bindings
-    this.handleQuantityChange = this.handleQuantityChange.bind(this)
-  }
-
-  handleQuantityChange(e) {
-
+    this.handleCheckOut = this.handleCheckOut.bind(this)
   }
 
   handleDelete(id) {
-    console.log("handleDelete ", id);
     this.props.removeProdFromCart(id);
   }
 
-  handleCheckOut() {
-    
-  console.log("checkOut")
-
+  handleCheckOut(e) {
+    console.log("checkOut")
   }
 
   componentWillMount() {
@@ -53,7 +46,7 @@ class CartContainer extends Component {
             {products &&
               products.map(product => {
                 return (
-                  <tr key={Math.random()}>
+                  <tr key={product.product_id}>
                     <td data-th="Product">
                       <div className="row">
                         <div className="col-sm-2 hidden-xs">
@@ -64,38 +57,29 @@ class CartContainer extends Component {
                           />
                         </div>
                         <div className="col-sm-10">
-                          <div key={product.product_id}>
+                          <div>
                             <h4 className="nomargin">
                               {product.name}
                             </h4>
                           </div>
-                          <p>Buns! Buns are fun!</p>
                         </div>
                       </div>
                     </td>
                     <td data-th="Price">
-                      {product.price}
+                      ${product.price}
                     </td>
                     <td data-th="Quantity">
-                      <input
-                        type="number"
-                        className="form-control text-center"
-                        value={product.quantity}
-                        onChange={this.handleQuantityChange}
-                      />
+                      {product.quantity}
                     </td>
                     <td data-th="Subtotal" className="text-center">
-                      {product.quantity * product.price}
+                      ${(product.quantity * product.price).toFixed(2)}
                     </td>
                     <td className="actions" data-th="">
                       <button
-                        onClick={this.handleDelete.bind(
-                          this,
-                          product.product_id
-                        )}
+                        onClick={this.handleDelete.bind(this, product.product_id)}
                         className="btn btn-danger btn-sm"
                       >
-                        <i className="fa fa-trash-o" />
+                        <Glyphicon glyph="remove" />
                       </button>
                     </td>
                   </tr>
@@ -112,18 +96,17 @@ class CartContainer extends Component {
               <td colSpan="2" className="hidden-xs" />
               <td className="hidden-xs text-center">
                 <strong>
-                  {products.reduce(function (sum, product) {
+                  ${products.reduce(function (sum, product) {
                     return sum + product.quantity * product.price
-                  }, 0)}
+                  }, 0).toFixed(2)}
                 </strong>
               </td>
               <td>
-                      <button
-                        onClick={this.handleCheckOut}
-                        className="btn btn-success btn-block"
-                      > Checkout
-                        <i className="fa fa-trash-o" />
-                      </button>
+                <button
+                  onClick={this.handleCheckOut}
+                  className="btn btn-success btn-block"
+                > Checkout
+                </button>
               </td>
             </tr>
           </tfoot>

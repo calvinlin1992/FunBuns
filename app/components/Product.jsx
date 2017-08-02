@@ -101,7 +101,7 @@ class Product extends Component {
             </Button>
           </div>
 
-          <Rating initialRate={parseInt(product.avg_review)} readonly />
+          <Rating initialRate={Number(product.avg_review)} readonly />
         </div>
       </Thumbnail>
     );

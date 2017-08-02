@@ -38,14 +38,18 @@ router.post("/:product_id", function (req, res, next) {
 });
 
 // DELETE /api/product
-router.delete("/:productId", function (req, res, next) {
-  const id = req.params.productId;
+router.delete("/:product_id", function (req, res, next) {
+  let product_id = Number(req.params.product_id);
+  let cart = req.session.cart || [];
+  let product_index = cart.findIndex((product) => {
+    return product.product_id === product_id
+  })
 
-  console.log("delete ", id);
+  cart.splice(product_index, 1);
 
-  Product.destroy({ where: { id } })
-    .then(() => res.status(204).end())
-    .catch(next);
+  req.session.cart = cart;
+
+  res.sendStatus(200)
 });
 
 router.put("/:productId", function (req, res, next) {
