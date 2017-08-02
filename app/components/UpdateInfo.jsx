@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, wellStyles, Form, FormGroup, ControlLabel, Col, FormControl } from 'react-bootstrap'
 
+// this form is for new users
 function UpdateInfo(props) {
   return (
     <div>
