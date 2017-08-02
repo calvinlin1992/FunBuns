@@ -60,8 +60,8 @@ const mapDispatchToProps = dispatch => ({
   fetchInitialData: () => {
     dispatch(loadProducts());
   },
-  addToCart: cartProduct => {
-    dispatch(addProductToCart(cartProduct));
+  addToCart: (product_id, cartProduct) => {
+    dispatch(addProductToCart(product_id, cartProduct));
   }
 });
 
