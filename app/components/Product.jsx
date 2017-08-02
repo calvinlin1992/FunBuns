@@ -39,23 +39,22 @@ class Product extends Component {
 
   _addToCart(product_id, image_url, name, price) {
     let quantity = this.state.quantity;
-
-
-    this.props.addToCart({
+    let cartItem = {
       product_id,
       image_url,
       name,
       price,
-      quantity
-    });
+      quantity: Number(quantity)
+    }
 
+    this.props.addToCart(product_id, cartItem);
 
     this.setState(
       {
         buttonLabel: this.BTN_LABEL_ADDED,
         isButtonDisabled: true
       },
-      function() {
+      function () {
         setTimeout(() => {
           // Wait 3 seconds then change the button label back.
           this.setState({

@@ -5,15 +5,22 @@ import { loadCartFromSession } from "../reducers/cart";
 class CartContainer extends Component {
   constructor(props) {
     super(props);
+
+    // Method Bindings
+    this.handleQuantityChange = this.handleQuantityChange.bind(this)
+  }
+
+  handleQuantityChange(e) {
+
   }
 
   componentWillMount() {
     this.props.getCartFromSession();
-    console.log("mounted");
   }
+
+
   render() {
-    const products = this.props.cart;
-    console.log("products ", products);
+    let products = this.props.cart;
     const totalPrice = 0;
 
     return (
@@ -34,7 +41,7 @@ class CartContainer extends Component {
             {products &&
               products.map(product => {
                 return (
-                  <tr>
+                  <tr key={Math.random()}>
                     <td data-th="Product">
                       <div className="row">
                         <div className="col-sm-2 hidden-xs">
@@ -45,7 +52,7 @@ class CartContainer extends Component {
                           />
                         </div>
                         <div className="col-sm-10">
-                          <div key={product.id}>
+                          <div key={product.product_id}>
                             <h4 className="nomargin">
                               {product.name}
                             </h4>
@@ -62,6 +69,7 @@ class CartContainer extends Component {
                         type="number"
                         className="form-control text-center"
                         value={product.quantity}
+                        onChange={this.handleQuantityChange}
                       />
                     </td>
                     <td data-th="Subtotal" className="text-center">
@@ -80,21 +88,16 @@ class CartContainer extends Component {
               })}
           </tbody>
           <tfoot>
-            <tr className="visible-xs">
-              <td className="text-center">
-                <strong>Total 1.99</strong>
-              </td>
-            </tr>
             <tr>
               <td>
-                <a href="/home" className="btn btn-warning">
+                <a href="/" className="btn btn-warning">
                   <i className="fa fa-angle-left" /> Continue Shopping
                 </a>
               </td>
               <td colSpan="2" className="hidden-xs" />
               <td className="hidden-xs text-center">
                 <strong>
-                  {products.reduce(function(sum, product) {
+                  {products.reduce(function (sum, product) {
                     return sum + product.quantity * product.price
                   }, 0)}
                 </strong>
