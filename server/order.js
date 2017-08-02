@@ -14,10 +14,15 @@ module.exports = require('express').Router()
   // If you want to only let admins list all the users, then you'll
   // have to add a role column to the users table to support
   // the concept of admin users.
-  (req, res, next) =>
-    req.user.is_admin ? Order.findAll() : Order.findAll({where: {id: req.user.id}})
-      .then(orders => res.json(orders))
-      .catch(next))
+  (req, res, next) => {
+    console.log(req.user.is_admin)
+    if (req.user.is_admin) return Order.findAll().then(orders => res.json(orders)).catch(next)
+    else { return Order.findAll({ where: { id: req.user.id } }).then(orders => res.json(orders)).catch(next) }
+      // .then(orders => res.json(orders))
+      // .catch(next)
+    // return req.user.is_admin ? Order.findAll() : Order.findAll({ where: { id: req.user.id } })
+      // return Order.findAll()
+  })
   .post('/',
   (req, res, next) =>
     Order.create(req.body)
@@ -35,11 +40,13 @@ module.exports = require('express').Router()
         .then(order => res.sendStatus(300))
         .catch(next)))
   .get('/:id',
-  (req, res, next) =>
-    Order.findAll({
+  (req, res, next) => {
+    console.log('----------heyyyyyyyyyy')
+    return Order.findOne({
       where: {
         id: req.params.id
       }
     })
-      .then(orders => res.json(orders))
-      .catch(next))
+    .then(order => res.json(order))
+  })
+      // .catch(next))

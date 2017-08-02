@@ -6,7 +6,8 @@ import Women from './Womens'
 import Cart from './Cart'
 import Admin from './Admin/Main'
 // import UsersContainer from './Admin/UsersContainer'
-// import OrdersContainer from './Orders/OrdersContainer'
+import OrdersContainer from './Orders/OrdersContainer'
+import Order from './Orders/Order'
 import ProductsContainer from './ProductsContainer'
 import NotFound from './NotFound'
 import Login from './Login'
@@ -23,6 +24,8 @@ export default function Routes() {
         <Route path="/cart" component={Cart} />
         <Route path="/admin" component={Admin} />
         <Route path="/admin/viewAllProducts" component={ProductsContainer} />
+        <Route path="/admin/viewAllOrders/:id" component={Order} />
+        <Route path="/admin/viewAllOrders" component={OrdersContainer} />
         <Route path="/account" component={Login} />
         <Route path="/updateInfo" component={UpdateInfo} />
         <Route path="/userProfile" component={UserProfile} />

@@ -40,26 +40,30 @@ export const removeOrder = (id) => {
     }
 }
 
+const initialState = {
+    orders: [],
+    selectedOrder: null
+}
+
 /* --------------------- REDUCER ------------------- */
-export default function reducer(state = [], action) {
+export default function reducer(state = initialState, action) {
+  const newState = Object.assign({}, state)
+  switch (action.type) {
 
-    switch (action.type) {
+  case 'LOAD_ORDERS':
+    newState.orders = action.orders
+    break
 
-        case 'ORDERS':
-            state = action.orders
-            break
+  case 'EDIT_ORDER':
+    newState.orders = newState.orders.map((order) => {
+      return order.id === action.order.id ? action.order : order
+    })
+    break
 
-        case 'EDIT_ORDER':
-            state = state.map((order) => {
-                return order.id === action.order.id ? action.order : order
-            })
-            break
-
-        case 'REMOVE_ORDER':
-            state = state.filter((order) => {
-                return order.id !== action.order.id
-            })
-    }
-
-    return state
+  case 'REMOVE_ORDER':
+    newState.orders = newState.orders.filter((order) => {
+      return order.id !== action.order.id
+    })
+  }
+  return newState
 }
