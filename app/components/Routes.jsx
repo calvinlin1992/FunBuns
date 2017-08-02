@@ -11,7 +11,8 @@ import Order from './Orders/Order'
 import ProductsContainer from './ProductsContainer'
 import NotFound from './NotFound'
 import Login from './Login'
-import Profile from './Profile'
+import UpdateInfo from './UpdateInfo'
+import UserProfile from './UserProfile'
 
 export default function Routes() {
   return (
@@ -26,7 +27,8 @@ export default function Routes() {
         <Route path="/admin/viewAllOrders/:id" component={Order} />
         <Route path="/admin/viewAllOrders" component={OrdersContainer} />
         <Route path="/account" component={Login} />
-        <Route path="/profile" component={Profile} />
+        <Route path="/updateInfo" component={UpdateInfo} />
+        <Route path="/userProfile" component={UserProfile} />
         <Redirect exact from="/" to="/home" />
         <Route component={NotFound} />
       </Switch>
