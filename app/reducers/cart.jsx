@@ -43,6 +43,7 @@ export const editProductQuantity = product => {
 };
 
 export const removeProductFromCart = id => {
+  console.log("delete from cart " , id)
   return dispatch => {
     axios.delete(`/api/cart/${id}`).then(() => {
       dispatch(remove(id));

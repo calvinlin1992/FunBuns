@@ -11,9 +11,8 @@
   border-top: 2px solid gray;
   text-align: center;
 }
-.carousel_container {
-  height: 500px;
-  width: 100%;
+.carousel-caption {
+  color : black;
 }
 .bg_color_skyblue {
   background-color: #3633FF; /*'skyblue';*/

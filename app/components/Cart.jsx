@@ -1,10 +1,22 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { loadCartFromSession } from "../reducers/cart";
+import { loadCartFromSession, removeProductFromCart } from "../reducers/cart";
+import Popup from 'react-popup';
 
 class CartContainer extends Component {
   constructor(props) {
     super(props);
+  }
+
+  handleDelete(id) {
+    console.log("handleDelete ", id);
+    this.props.removeProdFromCart(id);
+  }
+
+  handleCheckOut() {
+    
+  console.log("checkOut")
+
   }
 
   componentWillMount() {
@@ -68,15 +80,18 @@ class CartContainer extends Component {
                       {product.quantity * product.price}
                     </td>
                     <td className="actions" data-th="">
-                      <button className="btn btn-info btn-sm">
-                        <i className="fa fa-refresh" />
-                      </button>
-                      <button className="btn btn-danger btn-sm">
+                      <button
+                        onClick={this.handleDelete.bind(
+                          this,
+                          product.product_id
+                        )}
+                        className="btn btn-danger btn-sm"
+                      >
                         <i className="fa fa-trash-o" />
                       </button>
                     </td>
                   </tr>
-                );
+                )
               })}
           </tbody>
           <tfoot>
@@ -100,9 +115,12 @@ class CartContainer extends Component {
                 </strong>
               </td>
               <td>
-                <a href="#" className="btn btn-success btn-block">
-                  Checkout <i className="fa fa-angle-right" />
-                </a>
+                      <button
+                        onClick={this.handleCheckOut}
+                        className="btn btn-success btn-block"
+                      > Checkout
+                        <i className="fa fa-trash-o" />
+                      </button>
               </td>
             </tr>
           </tfoot>
@@ -121,6 +139,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   getCartFromSession: () => {
     dispatch(loadCartFromSession());
+  },
+  removeProdFromCart: id => {
+    dispatch(removeProductFromCart(id));
   }
 });
 
