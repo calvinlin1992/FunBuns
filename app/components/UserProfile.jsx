@@ -1,9 +1,13 @@
 import React from 'react'
 import { Button, wellStyles, Form, FormGroup, ControlLabel, Col, FormControl } from 'react-bootstrap'
 
-function Profile(props) {
+// this form is for existing users after they've logged in
+function UpdateInfo(props) {
+  // props.auth contains all the user state data
+  console.log(props.auth)
   return (
     <div>
+      <h1>Welcome {props.auth ? props.auth.first_name : null}, would you like to update your profile?</h1>
       <form onSubmit={evt => {
         evt.preventDefault()
         props.update({
@@ -13,6 +17,7 @@ function Profile(props) {
           paypal: evt.target.paypal.value,
           phone: evt.target.phone.value,
         })
+        props.history.push('/home')
       }}>
         <Form horizontal>
           <FormGroup controlId="email">
@@ -20,7 +25,7 @@ function Profile(props) {
               Email
         </Col>
             <Col sm={4}>
-              <FormControl name='email' type="email" placeholder="Email" />
+              <FormControl name='email' type="email" placeholder={props.auth ? props.auth.email : 'Email'} />
             </Col>
           </FormGroup>
           <FormGroup controlId="paypal">
@@ -28,7 +33,7 @@ function Profile(props) {
               PayPal Email
         </Col>
             <Col sm={4}>
-              <FormControl name='paypal' type="email" placeholder="PayPal Email" />
+              <FormControl name='paypal' type="email" placeholder={props.auth ? props.auth.paypal_name : 'PayPal Email'} />
             </Col>
           </FormGroup>
           <FormGroup controlId="address">
@@ -36,7 +41,7 @@ function Profile(props) {
               Address
         </Col>
             <Col sm={4}>
-              <FormControl name='address' type="text" placeholder="Address" />
+              <FormControl name='address' type="text" placeholder={props.auth ? props.auth.address : 'Address'} />
             </Col>
           </FormGroup>
           <FormGroup controlId="phone">
@@ -44,7 +49,7 @@ function Profile(props) {
               Telephone
         </Col>
             <Col sm={4}>
-              <FormControl maxLength="10" name='phone' type="tel" placeholder="Phone Number" />
+              <FormControl maxLength="10" name='phone' type="tel" placeholder={props.auth ? props.auth.phone_number : 'Phone Number'} />
             </Col>
           </FormGroup>
           <FormGroup>
@@ -68,4 +73,4 @@ export default connect(
   dispatch => ({
     update: userObj => dispatch(update(userObj))
   }),        // mapDispatchToProps
-)(Profile)
+)(UpdateInfo)

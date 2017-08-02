@@ -14,24 +14,24 @@ export default class CarouselHero extends Component {
         onSelect={this.onSelect}
       >
         <Carousel.Item>
-          <div className="bg_color_skyblue carousel_container"></div>
-          <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Special Buns</p>
+        <img width={300} height={300} src="/images/c1.jpg"/>
+        <Carousel.Caption>
+            <h3>The Barry Bun</h3>
+            <p>ON SALE!</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
-          <div className="carousel_container bg_color_aqua"></div>
+        <img width={300} height={300} src="/images/c2.jpg"/>
           <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Hot Buns</p>
+            <h3>The Honest Bun</h3>
+            <p>50% OFF!</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
-          <div className="carousel_container bg_color_lightpink"></div>
+        <img width={300} height={300} src="/images/c3.png"/>
           <Carousel.Caption>
-            <h3>Third slide label</h3>
-            <p>Super Buns</p>
+            <h3>SECRET BUN</h3>
+            <p>?</p>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
